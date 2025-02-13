@@ -51,13 +51,13 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Visi & Misi</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Struktur Organisasi</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sumber Daya Manusia</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peta Desa</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Lembaga Pemerintahan Desa</a></li>
+                    <li><a href="/profil/sejarah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a></li>
+                    <li><a href="/profil/sambutan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
+                    <li><a href="/profil/visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Visi & Misi</a></li>
+                    <li><a href="/profil/struktur-organisasi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Struktur Organisasi</a></li>
+                    <li><a href="/profil/perangkat-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sumber Daya Manusia</a></li>
+                    <li><a href="/profil/peta-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peta Desa</a></li>
+                    <li><a href="/profil/lembaga-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Lembaga Pemerintahan Desa</a></li>
                 </ul>
             </li>
 
