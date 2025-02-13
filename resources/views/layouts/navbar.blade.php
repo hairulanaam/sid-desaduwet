@@ -72,11 +72,11 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Agenda</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">PPID Desa</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Berita Desa</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Galeri Kegiatan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Video Kegiatan</a></li>
+                    <li><a href="/publikasi/agenda" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Agenda</a></li>
+                    <li><a href="/publikasi/ppid-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">PPID Desa</a></li>
+                    <li><a href="/publikasi/berita-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Berita Desa</a></li>
+                    <li><a href="/publikasi/galeri-kegiatan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Galeri Kegiatan</a></li>
+                    <li><a href="/publikasi/video-kegiatan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Video Kegiatan</a></li>
                 </ul>
             </li>
 
