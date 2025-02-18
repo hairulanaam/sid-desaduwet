@@ -24,7 +24,7 @@ class SambutanResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'Sambutan';
+        return 'profil/sambutan';
     }
 
     public static function getModelLabel(): string

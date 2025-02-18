@@ -25,7 +25,7 @@ class PerangkatDesaResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'perangkat_desa';
+        return 'profil/perangkat-desa';
     }
 
     public static function getModelLabel(): string

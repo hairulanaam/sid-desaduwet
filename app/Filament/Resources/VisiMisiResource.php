@@ -23,7 +23,7 @@ class VisiMisiResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'visi_misi';
+        return 'profil/visi-misi';
     }
 
     public static function getModelLabel(): string

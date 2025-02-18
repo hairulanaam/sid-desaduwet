@@ -19,7 +19,7 @@ class PetaDesaResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'peta_desa';
+        return 'profil/peta-desa';
     }
 
     public static function getModelLabel(): string
