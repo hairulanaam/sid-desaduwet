@@ -22,7 +22,7 @@ class VideoKegiatanResource extends Resource
     
     public static function getSlug(): string
     {
-        return 'video-kegiatan';
+        return '/publikasi/video-kegiatan';
     }
 
     public static function getModelLabel(): string

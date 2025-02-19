@@ -19,7 +19,7 @@ class AgendaResource extends Resource
     protected static ?string $navigationGroup = 'Publikasi';
     public static function getSlug(): string
     {
-        return 'agenda';
+        return '/publikasi/agenda';
     }
 
     public static function getModelLabel(): string

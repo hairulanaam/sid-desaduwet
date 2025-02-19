@@ -22,7 +22,7 @@ class GaleriKegiatanResource extends Resource
     
     public static function getSlug(): string
     {
-        return 'galeri-kegiatan';
+        return '/publikasi/galeri-kegiatan';
     }
 
     public static function getModelLabel(): string

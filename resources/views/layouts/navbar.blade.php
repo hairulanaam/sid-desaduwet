@@ -51,13 +51,13 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Visi & Misi</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Struktur Organisasi</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sumber Daya Manusia</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peta Desa</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Lembaga Pemerintahan Desa</a></li>
+                    <li><a href="/profil/sejarah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a></li>
+                    <li><a href="/profil/sambutan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
+                    <li><a href="/profil/visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Visi & Misi</a></li>
+                    <li><a href="/profil/struktur-organisasi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Struktur Organisasi</a></li>
+                    <li><a href="/profil/perangkat-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sumber Daya Manusia</a></li>
+                    <li><a href="/profil/peta-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peta Desa</a></li>
+                    <li><a href="/profil/lembaga-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Lembaga Pemerintahan Desa</a></li>
                 </ul>
             </li>
 
@@ -110,19 +110,19 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-56">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Pekerjaan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Pendidikan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Status Perkawinan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Golongan Darah</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Agama</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kelas Sosial</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Jamkesmas</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Program Keluarga Harapan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kepala Keluarga</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Gizi Buruk</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kehamilan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Buruh Migran</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bantuan Siswa Miskin</a></li>
+                    <li><a href="/statistik/pekerjaan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Pekerjaan</a></li>
+                    <li><a href="/statistik/pendidikan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Pendidikan</a></li>
+                    <li><a href="/statistik/status-perkawinan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Status Perkawinan</a></li>
+                    <li><a href="/statistik/golongan-darah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Golongan Darah</a></li>
+                    <li><a href="/statistik/agama" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Agama</a></li>
+                    <li><a href="/statistik/kelas-sosial" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kelas Sosial</a></li>
+                    <li><a href="/statistik/jamkesmas" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Jamkesmas</a></li>
+                    <li><a href="/statistik/program-keluarga-harapan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Program Keluarga Harapan</a></li>
+                    <li><a href="/statistik/kepala-keluarga" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kepala Keluarga</a></li>
+                    <li><a href="/statistik/gizi-buruk" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Gizi Buruk</a></li>
+                    <li><a href="/statistik/kehamilan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Kehamilan</a></li>
+                    <li><a href="/statistik/buruh-migran" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Buruh Migran</a></li>
+                    <li><a href="/statistik/bantuan-siswa-miskin" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bantuan Siswa Miskin</a></li>
                 </ul>
             </li>
 
@@ -137,12 +137,12 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Undang Undang</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Bupati</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Menteri</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Pemerintah</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Gubernur</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Unduhan</a></li>
+                    <li><a href="/e-doc/undang-undang" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Undang Undang</a></li>
+                    <li><a href="/e-doc/peraturan-bupati" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Bupati</a></li>
+                    <li><a href="/e-doc/peraturan-menteri" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Menteri</a></li>
+                    <li><a href="/e-doc/peraturan-pemerintah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Pemerintah</a></li>
+                    <li><a href="/e-doc/peraturan-gubernur" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Peraturan Gubernur</a></li>
+                    <li><a href="/e-doc/unduhan/" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Unduhan</a></li>
                 </ul>
             </li>
             

@@ -19,7 +19,7 @@ class PpidDesaResource extends Resource
     
     public static function getSlug(): string
     {
-        return 'ppid-desa';
+        return '/publikasi/ppid-desa';
     }
 
     public static function getModelLabel(): string

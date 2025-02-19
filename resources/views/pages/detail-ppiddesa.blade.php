@@ -22,21 +22,19 @@
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
 
         <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
-            <p class="text-5xl font-bold mt-3">PPID Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+            <p class="sm:text-5xl text-3xl font-bold mt-3">PPID Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
             </p>
-
         </div>
     </section>
 
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN DETAIL PPID DESA -->
-        <div class="md:col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
-
                 <img src="{{ asset('storage/' . $ppidDesa->gambar) }}" alt="{{ $ppidDesa->judul }}"
-                    class="rounded-lg shadow-lg w-full h-[400px] object-cover">
-                <div class="flex items-center gap-4 pt-4">
+                    class="rounded-lg shadow-lg w-full h-auto object-cover">
+                <div class="flex items-center gap-2 pt-3 text-xs sm:text-sm text-gray-500">
                     <div class="flex gap-1 items-center">
                         <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender"
                             class="h-4 w-auto object-contain">
@@ -48,8 +46,8 @@
                         <p class="text-[15px] text-[#b0b0b0]">{{ $ppidDesa->penulis }}</p>
                     </div>
                 </div>
-                <h1 class="text-3xl font-bold mt-6 text-gray-800">{{ $ppidDesa->judul }}</h1>
-                <p class="mt-3 text-gray-600 text-lg text-justify">
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800">{{ $ppidDesa->judul }}</h1>
+                <p class="mt-2 text-gray-600 text-sm sm:text-base md:text-lg text-justify">
                     {{ $ppidDesa->deskripsi }}
                 </p>
             </div>

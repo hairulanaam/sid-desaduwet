@@ -22,7 +22,7 @@ class BeritaDesaResource extends Resource
     
     public static function getSlug(): string
     {
-        return 'berita-desa';
+        return '/publikasi/berita-desa';
     }
 
     public static function getModelLabel(): string

@@ -21,31 +21,31 @@
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
 
         <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
-            <p class="text-5xl font-bold mt-3">PPID Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+            <p class="sm:text-5xl text-3xl font-bold mt-3">PPID Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
             </p>
         </div>
     </section>
 
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN PPID DESA -->
-        <div class="col-span-2 space-y-5">
+        <div class="lg:col-span-2 order-1 space-y-8">
             @foreach ($ppidDesa as $item)
-                <div class="flex gap-3 items-center">
+                <div class="flex flex-col lg:flex-row gap-6 items-center">
                     <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar PPID Desa"
                         class="h-52 w-72 object-cover bg-center">
-                    <div class="flex-col space-y-3">
+                    <div class="flex flex-col space-y-3 w-full">
                         <p class="font-semibold text-[22px] text-black text-justify leading-tight">
                             {{ $item->judul }}
                         </p>
-                        <div class="flex items-center gap-4">
-                            <div class="flex gap-1 items-center">
+                        <div class="flex flex-wrap items-center gap-4 text-gray-500 text-sm">
+                            <div class="flex items-center gap-1">
                                 <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-4 w-auto">
                                 <p class="text-[15px] text-[#b0b0b0]">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
-                            <div class="flex gap-1 items-center">
+                            <div class="flex items-center gap-1">
                                 <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-4 w-auto">
-                                <p class="text-[15px] text-[#b0b0b0]">{{ $item->penulis }}</p>
+                                <p class="text-[15px] text-[#b0b0b0] text-justify">{{ $item->penulis }}</p>
                             </div>
                         </div>
                         <p class="text-[15px] text-[#b0b0b0] text-justify">
@@ -61,10 +61,53 @@
                 </div>
                 <div class="bg-gray-200 w-full h-[1px] rounded-full"></div>
             @endforeach
-        </div>
+            <div class="flex justify-center mt-6">
+                <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center space-x-2">
+                    <!-- Tombol Previous -->
+                    @if ($ppidDesa->onFirstPage())
+                        <span class="px-3 py-2 text-gray-400 bg-gray-200 rounded-md cursor-not-allowed">
+                            ❮
+                        </span>
+                    @else
+                        <a href="{{ $ppidDesa->previousPageUrl() }}"
+                            class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                            ❮
+                        </a>
+                    @endif
 
-        <!-- SIDEBAR (AGENDA & BERITA) -->
-        <div class="space-y-16">
+                    <!-- Nomor Halaman -->
+                    @foreach ($ppidDesa->links()->elements[0] as $page => $url)
+                        @if ($page == $ppidDesa->currentPage())
+                            <span class="px-3 py-2 bg-green-500 text-white rounded-md">
+                                {{ $page }}
+                            </span>
+                        @else
+                            <a href="{{ $url }}"
+                                class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                                {{ $page }}
+                            </a>
+                        @endif
+                    @endforeach
+
+                    <!-- Tombol Next -->
+                    @if ($ppidDesa->hasMorePages())
+                        <a href="{{ $ppidDesa->nextPageUrl() }}"
+                            class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                            ❯
+                        </a>
+                    @else
+                        <span class="px-3 py-2 text-gray-400 bg-gray-200 rounded-md cursor-not-allowed">
+                            ❯
+                        </span>
+                    @endif
+                    
+                </nav>
+            </div>
+        </div>
+        
+        
+
+        <div class="space-y-8 order-2">
             <!-- AGENDA DESA (Auto-scroll Loop & Bisa Digulir) -->
             <div class="bg-white shadow-md rounded-lg p-6">
                 <!-- Header -->
@@ -73,58 +116,59 @@
 
                 <!-- Container Scrollable -->
                 <div id="agenda-container"
-                    class="flex space-x-4 flex-nowrap cursor-pointer select-none overflow-hidden w-full">
+                    class="flex space-x-4 overflow-x-auto scrollbar-hide">
                     @foreach ($agendas as $agenda)
                         <a href="{{ route('agenda.show', $agenda->id) }}"
                             class="agenda-item min-w-[250px] bg-gray-100 p-4 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
                             <p class="text-lg font-semibold text-gray-800">{{ $agenda->judul }}</p>
                             <p class="text-sm text-gray-600 mt-1">📆
-                                {{ \Carbon\Carbon::parse($agenda->tanggal)->format('d F Y') }}</p>
+                                {{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('l, d F Y') }}</p>
                         </a>
                     @endforeach
                 </div>
             </div>
 
             <!-- BERITA DESA -->
-            <div class="bg-white shadow-md rounded-lg p-6 max-w-3xl mx-auto">
+            <div class="bg-white shadow-md rounded-lg p-6">
                 <!-- Header -->
                 <div class="mb-4">
-                    <p class="text-xl text-black font-bold">Berita Desa</p>
-                    <div class="w-10 bg-[#35b242] h-[2px] rounded-lg"></div>
+                    <p class="text-lg sm:text-xl font-bold text-black">Berita Desa</p>
+                    <div class="w-10 bg-[#35b242] h-[2px] rounded-lg mb-4"></div>
                 </div>
-                @foreach($beritaDesa->sortByDesc('tanggal')->take(3) as $berita)
-                <div class="flex items-start gap-4">
-                    <div class="w-24 h-24 flex-shrink-0">
-                        <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}"
-                            class="w-full h-full object-cover bg-center rounded-md shadow-md">
-                    </div>
-                    <div class="flex flex-col justify-between flex-1">
-                        <p class="font-semibold text-sm text-black leading-snug">
-                           {{ $berita->judul }}
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-gray-500 text-xs mt-1">
-                            <div class="flex items-center gap-1">
-                                <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-3 w-auto">
-                                <p>{{ \Carbon\Carbon::parse($berita->tanggal)->format('d F Y') }}</p>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-3 w-auto">
-                                <p>{{ $berita->penulis }}</p>
-                            </div>
+                @foreach ($beritaDesa->sortByDesc('tanggal')->take(3) as $berita)
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="w-full sm:w-24 h-24 rounded-md overflow-hidden shadow-md">
+                            <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}"
+                                class="w-full h-full object-cover bg-center rounded-md shadow-md">
                         </div>
-                        <p class="text-gray-600 text-xs mt-2">
-                            {{ Str::limit($berita->deskripsi, 100) }}
-                        </p>
-                        <a href="{{ route('berita.show', $berita->id) }}"
-                            class="flex items-center gap-2 text-green-600 text-xs font-semibold mt-2 hover:underline">
-                            <p>Baca Selengkapnya</p>
-                            <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow" class="h-3 w-auto">
-                        </a>
+                        <div class="flex flex-col justify-between flex-1">
+                            <p class="font-semibold text-sm text-black leading-snug">
+                                {{ $berita->judul }}
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-gray-500 text-xs mt-1">
+                                <div class="flex items-center gap-1">
+                                    <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-3 w-auto">
+                                    <p>{{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('l, d F Y') }}</p>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-3 w-auto">
+                                    <p>{{ $berita->penulis }}</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs mt-2">
+                                {{ Str::limit($berita->deskripsi, 100) }}
+                            </p>
+                            <a href="{{ route('berita.show', $berita->id) }}"
+                                class="flex items-center gap-2 text-green-600 text-xs font-semibold mt-2 hover:underline">
+                                <p>Baca Selengkapnya</p>
+                                <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow" class="h-3 w-auto">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <!-- Jarak Antar Berita -->
-                <div class="h-4"></div>
+                    <!-- Jarak Antar Berita -->
+                    <div class="h-4"></div>
                 @endforeach
+            </div>
         </div>
         </div>
 @endsection

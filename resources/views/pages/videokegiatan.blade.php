@@ -7,9 +7,9 @@
 <section class="relative bg-cover w-full h-[50vh] bg-hero flex mb-10"
     style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
-    <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
-        <p class="text-5xl font-bold mt-3">Video Kegiatan Desa
-            <span class="py-0 px-1 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+    <div class="justify-center items-center text-center mx-auto text-white flex z-10 flex-col">
+        <p class="sm:text-5xl text-2xl font-bold mt-3">Video Kegiatan Desa
+            <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-2xl">Duwet</span>
         </p>
     </div>
 </section>

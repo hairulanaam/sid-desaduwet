@@ -19,9 +19,9 @@
         style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
 
-        <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
-            <p class="text-5xl font-bold mt-3">Galeri Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+        <div class="justify-center text-center items-center mx-auto text-white flex z-10 flex-col">
+            <p class="sm:text-5xl text-2xl md:text-4xl font-bold mt-3">Galeri Kegiatan Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-2xl md:text-4xl ">Duwet</span>
             </p>
         </div>
     </section>
@@ -32,7 +32,7 @@
             <div class="bg-white shadow-md rounded-lg p-6">
 
                 <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}"
-                    class="rounded-lg shadow-lg w-full h-[400px] object-cover">
+                    class="rounded-lg shadow-lg w-full h-auto object-cover">
                 <div class="flex items-center gap-4 pt-4">
                     <div class="flex gap-1 items-center">
                         <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender"
