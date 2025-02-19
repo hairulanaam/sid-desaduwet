@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PerangkatDesaResource\Pages;
-use App\Filament\Resources\PerangkatDesaResource\RelationManagers;
-use App\Models\PerangkatDesa;
+use App\Filament\Resources\PotensiDesaResource\Pages;
+use App\Filament\Resources\PotensiDesaResource\RelationManagers;
+use App\Models\PotensiDesa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,34 +13,35 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PerangkatDesaResource extends Resource
+class PotensiDesaResource extends Resource
 {
-    protected static ?string $model = PerangkatDesa::class;
+    protected static ?string $model = PotensiDesa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Informasi Umum';
     public static function getPluralModelLabel(): string
     {
-        return 'Perangkat Desa';
+        return 'Potensi Desa';
     }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-            Forms\Components\TextInput::make('nama')
+                Forms\Components\TextInput::make('bidang')
                 ->required()
-                ->label('Nama Lengkap')
+                ->label('Jenis Bidang')
                 ->maxLength(100),
-            Forms\Components\TextInput::make('jabatan')
+            Forms\Components\TextInput::make('deskripsi')
                 ->required()
-                ->label('Jabatan')
+                ->label('Deskripsi')
                 ->maxLength(100),
-            Forms\Components\FileUpload::make('foto')
+            Forms\Components\FileUpload::make('gambar')
                 ->required()
-                ->label('Foto')
+                ->label('Gambar')
                 ->image()
                 ->disk('public')
-                ->directory('perangkatdesa_gambar')
+                ->directory('potensidesa_gambar')
                 ->visibility('public')
                 ->maxSize(5240) 
                 ->helperText('Max size: 5MB, formats: jpg, png, jpeg') 
@@ -51,16 +52,16 @@ class PerangkatDesaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('foto') 
+                Tables\Columns\ImageColumn::make('gambar') 
                     ->disk('public')
                     ->height(50) 
                     ->width(50)
                     ->url(fn ($record) => asset('storage/' . $record->foto)) // Pastikan URL benar
                     ->openUrlInNewTab(),
-                Tables\Columns\TextColumn::make('nama')
+                Tables\Columns\TextColumn::make('bidang')
                     ->searchable()
                     ->limit(20),  
-                Tables\Columns\TextColumn::make('jabatan')
+                Tables\Columns\TextColumn::make('deskripsi')
                     ->searchable()
                     ->limit(length: 20),  
             ])
@@ -87,9 +88,9 @@ class PerangkatDesaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPerangkatDesas::route('/'),
-            'create' => Pages\CreatePerangkatDesa::route('/create'),
-            'edit' => Pages\EditPerangkatDesa::route('/{record}/edit'),
+            'index' => Pages\ListPotensiDesas::route('/'),
+            'create' => Pages\CreatePotensiDesa::route('/create'),
+            'edit' => Pages\EditPotensiDesa::route('/{record}/edit'),
         ];
     }
 }

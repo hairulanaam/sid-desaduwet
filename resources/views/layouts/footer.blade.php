@@ -4,7 +4,7 @@
             <div class="flex gap-2 items-center">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo Desa Duwet"
                     title="Logo Desa Duwet" class="w-[40px]">
-                <p class="text-xl font-bold text-white">Pemerintah Desa Duwet</p>
+                <p class="text-xl font-bold text-white">Pemerintah Desa <span>{{ $informasidesas->nama_desa }}</span></p>
             </div>
             <p class="text-[15px] text-white text-justify">Duwet adalah desa yang berada di kecamatan Panarukan, Kabupaten Situbondo, Jawa Timur, Indonesia</p>
         </div>
@@ -36,16 +36,16 @@
         </div>
 
         <div class="flex-1 flex flex-col gap-3 md:ml-10">
-                <p class="text-lg font-bold text-white">Hubungi Kami</p>
-                <div class="w-[40px] bg-[#35b242] h-[2px] rounded-lg -mt-2"></div>
-                <div class="flex items-start gap-2">
-                    <img src="{{ asset('assets/vector/maps.png') }}" alt="Alamat" class="h-7 w-auto object-contain border rounded-full p-1.5">
-                    <p class="text-[15px] text-justify text-white -mt-1">Jl. Pantai Pathek Dusun Pathek Barat, RT.01/RW.01, Sumberpatek Timur, Duwet, Kec. Panarukan, Kabupaten Situbondo, Jawa Timur 68351, Indonesia</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <img src="{{ asset('assets/vector/phone.png') }}" alt="Telepon" class="h-7 w-auto object-contain border rounded-full p-1.5">
-                    <p class="text-[15px] text-justify text-white">+628123456789</p>
-                </div>
+            <p class="text-lg font-bold text-white">Hubungi Kami</p>
+            <div class="w-[40px] bg-[#35b242] h-[2px] rounded-lg -mt-2"></div>
+            <div class="flex items-start gap-2">
+                <img src="{{ asset('assets/vector/maps.png') }}" alt="Alamat" class="h-7 w-auto object-contain border rounded-full p-1.5">
+                <p class="text-[15px] text-justify text-white -mt-1">{{ $informasidesas->alamat_desa }}</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <img src="{{ asset('assets/vector/phone.png') }}" alt="Telepon" class="h-7 w-auto object-contain border rounded-full p-1.5">
+                <p class="text-[15px] text-justify text-white">{{ $informasidesas->telepon_desa }}</p>
+            </div>
         </div>
     </div>
 </footer>

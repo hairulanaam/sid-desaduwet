@@ -317,7 +317,7 @@ class LandingController extends Controller
 
     public function galerikegiatan()
     {
-        $galeriKegiatan = GaleriKegiatan::orderBy('tanggal', 'desc')->paginate(4);
+        $galeriKegiatan = GaleriKegiatan::orderBy('tanggal', 'desc')->get();
         $beritaDesa = BeritaDesa::latest()->take(3)->get();
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
 

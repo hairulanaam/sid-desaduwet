@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PerangkatDesaResource\Pages;
-use App\Filament\Resources\PerangkatDesaResource\RelationManagers;
-use App\Models\PerangkatDesa;
+use App\Filament\Resources\BeritaResource\Pages;
+use App\Filament\Resources\BeritaResource\RelationManagers;
+use App\Models\Berita;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,35 +13,40 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PerangkatDesaResource extends Resource
+class BeritaResource extends Resource
 {
-    protected static ?string $model = PerangkatDesa::class;
+    protected static ?string $model = Berita::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Informasi Umum';
+
     public static function getPluralModelLabel(): string
     {
-        return 'Perangkat Desa';
+        return 'Berita Desa';
     }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-            Forms\Components\TextInput::make('nama')
+            Forms\Components\TextInput::make('judul')
                 ->required()
-                ->label('Nama Lengkap')
+                ->label('Judul')
                 ->maxLength(100),
-            Forms\Components\TextInput::make('jabatan')
+            Forms\Components\DatePicker::make('tanggal_publish')
                 ->required()
-                ->label('Jabatan')
-                ->maxLength(100),
-            Forms\Components\FileUpload::make('foto')
+                ->label('Tanggal Publikasi')
+                ->maxDate(now()),
+            Forms\Components\TextInput::make('deskripsi')
                 ->required()
-                ->label('Foto')
+                ->label('Deskripsi')
+                ->maxLength(300),
+            Forms\Components\FileUpload::make('gambar')
+                ->required()
+                ->label('Dokumentasi')
                 ->image()
                 ->disk('public')
-                ->directory('perangkatdesa_gambar')
-                ->visibility('public')
+                ->directory('berita_gambar')
                 ->maxSize(5240) 
                 ->helperText('Max size: 5MB, formats: jpg, png, jpeg') 
             ]);
@@ -51,19 +56,18 @@ class PerangkatDesaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('foto') 
+                Tables\Columns\ImageColumn::make('gambar') 
                     ->disk('public')
                     ->height(50) 
                     ->width(50)
-                    ->url(fn ($record) => asset('storage/' . $record->foto)) // Pastikan URL benar
-                    ->openUrlInNewTab(),
-                Tables\Columns\TextColumn::make('nama')
+                    ->url(fn ($record) => asset('storage/' . $record->gambar)),
+                Tables\Columns\TextColumn::make('judul')
                     ->searchable()
-                    ->limit(20),  
-                Tables\Columns\TextColumn::make('jabatan')
-                    ->searchable()
-                    ->limit(length: 20),  
-            ])
+                    ->limit(15),  
+                Tables\Columns\TextColumn::make('tanggal_publish'),
+                Tables\Columns\TextColumn::make('deskripsi')
+                    ->limit(30),  
+                ])
             ->filters([
                 //
             ])
@@ -87,9 +91,9 @@ class PerangkatDesaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPerangkatDesas::route('/'),
-            'create' => Pages\CreatePerangkatDesa::route('/create'),
-            'edit' => Pages\EditPerangkatDesa::route('/{record}/edit'),
+            'index' => Pages\ListBeritas::route('/'),
+            'create' => Pages\CreateBerita::route('/create'),
+            'edit' => Pages\EditBerita::route('/{record}/edit'),
         ];
     }
 }
