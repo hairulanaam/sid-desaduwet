@@ -32,6 +32,10 @@ use App\Models\VideoKegiatan;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\App;
+use App\Models\Berita;
+use App\Models\PerangkatDesa;
+use App\Models\InformasiDesa;
+use App\Models\PotensiDesa;
 
 App::setLocale('id');
 Carbon::setLocale('id');
@@ -40,8 +44,7 @@ CarbonImmutable::setLocale('id');
 
 class LandingController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $layanans = [
             [
                 'icon' => 'assets/vector/profil.png',
@@ -69,9 +72,11 @@ class LandingController extends Controller
             ],
         ];
 
-        return view('pages.index')->with([
-            'layanans' => $layanans
-        ]);
+        $beritas = Berita::latest()->take(3)->get();
+        $perangkatdesas = PerangkatDesa::all();
+        $informasidesas = InformasiDesa::first();
+        $potensidesas = PotensiDesa::all();
+        return view('pages.index', compact('layanans', 'beritas', 'perangkatdesas', 'informasidesas', 'potensidesas'));
     }
 
     public function pekerjaan()
