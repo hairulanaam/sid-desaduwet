@@ -24,7 +24,7 @@ class SejarahResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'sejarah';
+        return 'profil/sejarah';
     }
 
     public static function getModelLabel(): string

@@ -17,8 +17,20 @@ class PerangkatDesaResource extends Resource
 {
     protected static ?string $model = PerangkatDesa::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Informasi Umum';
+
+    protected static ?string $navigationGroup = 'Profil';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    public static function getSlug(): string
+    {
+        return 'profil/perangkat-desa';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Perangkat Desa';
+    }
+
     public static function getPluralModelLabel(): string
     {
         return 'Perangkat Desa';

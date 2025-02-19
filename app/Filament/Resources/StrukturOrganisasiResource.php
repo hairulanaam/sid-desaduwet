@@ -25,7 +25,7 @@ class StrukturOrganisasiResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'struktur_organisasi';
+        return 'profil/struktur-organisasi';
     }
 
     public static function getModelLabel(): string
@@ -106,6 +106,11 @@ class StrukturOrganisasiResource extends Resource
                     ->searchable()
                     ->limit(50)
                     ->label('Deskripsi'),
+                    
+                TextColumn::make('anggota_count')
+                    ->label('Jumlah Anggota')
+                    ->getStateUsing(fn ($record) => is_array($record->anggota) ? count($record->anggota) : 0)
+                    ->sortable(),
 
                 TextColumn::make('created_at')
                     ->dateTime('d M Y H:i')

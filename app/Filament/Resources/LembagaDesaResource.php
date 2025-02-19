@@ -21,7 +21,7 @@ class LembagaDesaResource extends Resource
 
     public static function getSlug(): string
     {
-        return 'lembaga_desa';
+        return 'profil/lembaga-desa';
     }
 
     public static function getModelLabel(): string

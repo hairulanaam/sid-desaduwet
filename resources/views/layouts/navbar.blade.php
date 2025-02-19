@@ -52,7 +52,7 @@
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
                     <li><a href="/profil/sejarah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a></li>
-                    <li><a href="/profil/sambutan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
+                    <li><a href="/profil/katasambutan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
                     <li><a href="/profil/visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Visi & Misi</a></li>
                     <li><a href="/profil/struktur-organisasi" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Struktur Organisasi</a></li>
                     <li><a href="/profil/perangkat-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sumber Daya Manusia</a></li>
@@ -91,11 +91,11 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Pariwisata</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Pertanian</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Perikanan</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Industri</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Perkebunan</a></li>
+                    <li><a href="/potensi/bidang-pariwisata" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Pariwisata</a></li>
+                    <li><a href="/potensi/bidang-pertanian" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Pertanian</a></li>
+                    <li><a href="/potensi/bidang-perikanan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Perikanan</a></li>
+                    <li><a href="/potensi/bidang-industri" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Industri</a></li>
+                    <li><a href="/potensi/bidang-perkebunan" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Bidang Perkebunan</a></li>
                 </ul>
             </li>
 
@@ -157,10 +157,10 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-48">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Usp</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Profil Bumdes</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Direksi Bumdes</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">PJenis Usaha</a></li>
+                    <li><a href="/bumdes/usp-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Usp</a></li>
+                    <li><a href="/bumdes/profil-bumdes" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Profil Bumdes</a></li>
+                    <li><a href="/bumdes/direksi-bumdes" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Direksi Bumdes</a></li>
+                    <li><a href="/bumdes/jenis-usaha" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Jenis Usaha</a></li>
                 </ul>
             </li>
 
@@ -175,7 +175,7 @@
                 </div>
             
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 w-36">
-                    <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Apbdes</a></li>
+                    <li><a href="/apbdes/infografis-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Infografis APBDes Desa Duwet</a></li>
                 </ul>
             </li>
         </ul>

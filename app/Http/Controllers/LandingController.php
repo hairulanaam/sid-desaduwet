@@ -10,6 +10,7 @@ use App\Models\BantuanSiswaMiskin;
 use App\Models\BeritaDesa;
 use App\Models\BuruhMigran;
 use App\Models\GaleriKegiatan;
+
 use App\Models\GiziBuruk;
 use App\Models\GolonganDarah;
 use App\Models\Jamkesmas;
@@ -22,6 +23,9 @@ use App\Models\PeraturanBupati;
 use App\Models\PeraturanGubernur;
 use App\Models\PeraturanMenteri;
 use App\Models\PeraturanPemerintah;
+
+use App\Models\InfografisDesa;
+
 use App\Models\PpidDesa;
 use App\Models\ProgramKeluargaHarapan;
 use App\Models\StatusPerkawinan;
@@ -31,6 +35,7 @@ use App\Models\VideoKegiatan;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\App;
 use App\Models\Berita;
 use App\Models\PerangkatDesa;
@@ -40,7 +45,6 @@ use App\Models\PotensiDesa;
 App::setLocale('id');
 Carbon::setLocale('id');
 CarbonImmutable::setLocale('id');
-
 
 class LandingController extends Controller
 {
@@ -272,6 +276,46 @@ class LandingController extends Controller
         return view('pages.detail-unduhan', compact('unduhan'));
     }
 
+    public function perangkatdesa ()
+    {
+        return view('pages.perangkatdesa')->with([]);
+    }
+    public function petadesa ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.petadesa', compact('agendas','beritaDesa'));
+    }
+    public function lembagadesa ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.lembagadesa', compact('agendas','beritaDesa'));
+    }
+    public function sejarah ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.sejarah', compact('agendas','beritaDesa'));
+    }
+    public function visimisi ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.visimisi', compact('agendas','beritaDesa'));
+    }
+    public function sambutan ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.sambutandesa', compact('agendas','beritaDesa'));
+    }
+    public function strukturorganisasi ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.strukturorganisasi', compact('agendas','beritaDesa'));
+    }
     public function agenda()
     {
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
@@ -322,7 +366,7 @@ class LandingController extends Controller
 
     public function galerikegiatan()
     {
-        $galeriKegiatan = GaleriKegiatan::orderBy('tanggal', 'desc')->get();
+        $galeriKegiatan = GaleriKegiatan::orderBy('tanggal', 'desc')->paginate(4);
         $beritaDesa = BeritaDesa::latest()->take(3)->get();
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
 
@@ -346,22 +390,73 @@ class LandingController extends Controller
         $video = VideoKegiatan::findOrFail($id);
         return view('pages.detail-videokegiatan', compact('video'));
     }
-    public function perangkatdesa ()
-    {return view('pages.perangkatdesa')->with([]);}
-    public function petadesa ()
-    {return view('pages.petadesa')->with([]);}
-    public function lembagadesa ()
-    {return view('pages.lembagadesa')->with([]);}
-    public function sejarah ()
-    {return view('pages.sejarah')->with([]);}
-    public function visimisi ()
-    {return view('pages.visimisi')->with([]);}
-    public function sambutan ()
-    {return view('pages.katasambutan')->with([]);}
-    public function strukturorganisasi ()
-    {return view('pages.strukturorganisasi')->with([]);}
+
+    public function bidangpariwisata ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.pariwisatadesa', compact('agendas','beritaDesa'));
+    }
+    public function bidangpertanian ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.pertaniandesa', compact('agendas','beritaDesa'));
+    }
+    public function bidangperikanan()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.perikanandesa', compact('agendas','beritaDesa'));
+    }
+    public function bidangindustri()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.industridesa', compact('agendas','beritaDesa'));
+    }
+    public function bidangperkebunan()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.perkebunandesa', compact('agendas','beritaDesa'));
+    }
+    public function uspdesa()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.uspdesa', compact('agendas','beritaDesa'));
+    }
+    public function ProfilBumdes()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.profilbumdes', compact('agendas','beritaDesa'));
+    }
+    public function DireksiBumdes()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.direksibumdes', compact('agendas','beritaDesa'));
+    }
+    public function JenisUsaha()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.jenisusaha', compact('agendas','beritaDesa'));
+    }
+    public function InfografisDesa()
+    {
+        $infografis = InfografisDesa::latest()->first();
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.infografisdesa', compact('infografis','agendas','beritaDesa'));
+    }
 }
 
+
     
+
+
 
 
