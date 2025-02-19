@@ -20,9 +20,9 @@
 <section class="relative bg-cover w-full h-[50vh] bg-hero flex items-center justify-center"
     style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-    <div class="text-center text-white z-10">
-        <p class="text-5xl font-bold">
-            Peta Desa <span class="py-0 px-2 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+    <div class="justify-center text-center items-center mx-auto text-white flex z-10 flex-col">
+        <p class="sm:text-5xl text-3xl font-bold mt-3">Peta Desa
+            <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
         </p>
     </div>
 </section>
@@ -47,10 +47,10 @@
                 <thead>
                     <tr class="bg-[#42c85f] text-white text-center">
                         <th class="border border-gray-300 px-4 py-2">No</th>
-                        <th class="border border-gray-300 px-4 py-2">Nama</th>
-                        <th class="border border-gray-300 px-4 py-2">Agama</th>
-                        <th class="border border-gray-300 px-4 py-2">Jabatan</th>
-                        <th class="border border-gray-300 px-4 py-2">Kontak</th>
+                        <th class="border border-gray-300 px-4 py-2">Puskesmas</th>
+                        <th class="border border-gray-300 px-4 py-2">Masjid</th>
+                        <th class="border border-gray-300 px-4 py-2">SDN</th>
+                        <th class="border border-gray-300 px-4 py-2">Warkop</th>
                     </tr>
                 </thead>
                 <tbody>

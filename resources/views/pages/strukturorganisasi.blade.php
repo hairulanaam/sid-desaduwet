@@ -36,9 +36,12 @@
         style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
         <div class="absolute inset-0 bg-black bg-opacity-40"></div>
         <div class="text-white text-center relative z-10">
-            <h1 class="text-5xl font-bold">Struktur Organisasi Desa
-                <span class="bg-[#2dba48] rounded-lg px-2 py-1">Duwet</span>
-            </h1>
+
+            <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
+                <p class="sm:text-5xl text-3xl font-bold mt-3">Struktur Organisasi Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
+                </p>
+            </div>
         </div>
     </section>
 
