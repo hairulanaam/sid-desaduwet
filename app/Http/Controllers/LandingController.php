@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Berita;
+use App\Models\PerangkatDesa;
+use App\Models\InformasiDesa;
+use App\Models\PotensiDesa;
 
 class LandingController extends Controller
 {
@@ -34,8 +38,10 @@ class LandingController extends Controller
             ],
         ];
 
-        return view('pages.index')->with([
-            'layanans' => $layanans
-        ]);
+        $beritas = Berita::latest()->take(3)->get();
+        $perangkatdesas = PerangkatDesa::all();
+        $informasidesas = InformasiDesa::first();
+        $potensidesas = PotensiDesa::all();
+        return view('pages.index', compact('layanans', 'beritas', 'perangkatdesas', 'informasidesas', 'potensidesas'));
     }
 }
