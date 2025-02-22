@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Agenda;
 use App\Models\BantuanSiswaMiskin;
 use App\Models\BeritaDesa;
+use App\Models\BidangPertanian;
 use App\Models\BuruhMigran;
 use App\Models\GaleriKegiatan;
 
@@ -37,7 +38,6 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\App;
-use App\Models\Berita;
 use App\Models\PerangkatDesa;
 use App\Models\InformasiDesa;
 use App\Models\PotensiDesa;
@@ -75,12 +75,12 @@ class LandingController extends Controller
                 'jenis' => 'Layanan'
             ],
         ];
-
-        $beritas = Berita::latest()->take(3)->get();
+        
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
         $perangkatdesas = PerangkatDesa::all();
         $informasidesas = InformasiDesa::first();
         $potensidesas = PotensiDesa::all();
-        return view('pages.index', compact('layanans', 'beritas', 'perangkatdesas', 'informasidesas', 'potensidesas'));
+        return view('pages.index', compact('layanans', 'perangkatdesas', 'informasidesas', 'potensidesas', 'beritaDesa'));
     }
 
     public function pekerjaan()
@@ -403,6 +403,7 @@ class LandingController extends Controller
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
         return view('pages.pertaniandesa', compact('agendas','beritaDesa'));
     }
+    
     public function bidangperikanan()
     {
         $beritaDesa = BeritaDesa::latest()->take(3)->get();

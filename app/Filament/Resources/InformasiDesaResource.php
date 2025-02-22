@@ -18,8 +18,17 @@ class InformasiDesaResource extends Resource
     protected static ?string $model = InformasiDesa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Informasi Umum';
+    protected static ?string $navigationGroup = 'Beranda';
     public static function getPluralModelLabel(): string
+    {
+        return 'Informasi Desa';
+    }
+    public static function getSlug(): string
+    {
+        return 'beranda/informasi-desa';
+    }
+
+    public static function getModelLabel(): string
     {
         return 'Informasi Desa';
     }

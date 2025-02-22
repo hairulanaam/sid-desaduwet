@@ -22,8 +22,8 @@
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
 
         <div class="justify-center text-center items-center mx-auto text-white flex z-10 flex-col">
-            <p class="sm:text-5xl text-3xl font-bold mt-3">Lembaga Pemerintahan Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
+            <p class="sm:text-5xl text-2xl md:text-4xl font-bold mt-3">Lembaga Pemerintahan Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-2xl md:text-4xl ">Duwet</span>
             </p>
         </div>
     </section>
@@ -42,8 +42,8 @@
         $lembagaDesa = LembagaDesa::with('anggota')->get();
     @endphp
 
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
             @foreach ($lembagaDesa as $lembaga)
                 <div class="bg-white shadow-md rounded-lg p-6 mb-6">
                     <h1 class="uppercase text-2xl font-bold text-gray-800 text-center mb-4">

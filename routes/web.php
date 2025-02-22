@@ -42,7 +42,6 @@ Route::get('/profil/visi-misi', [LandingController::class, 'visimisi'])->name('v
 Route::get('/profil/katasambutan', [LandingController::class, 'sambutan'])->name('sambutan');
 Route::get('/profil/struktur-organisasi', [LandingController::class, 'strukturorganisasi'])->name('strukturorganisasi');
 
-
 Route::get('/publikasi/agenda', [LandingController::class, 'agenda'])->name('agenda');
 Route::get('/publikasi/agenda/{id}', [LandingController::class, 'showAgenda'])->name('agenda.show');
 Route::get('/publikasi/ppid-desa', [LandingController::class, 'ppiddesa'])->name('ppiddesa');

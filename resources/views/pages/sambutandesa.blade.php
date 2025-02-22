@@ -21,26 +21,25 @@
         style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
 
-        <div class="justify-center items-center mx-auto text-white flex z-10 flex-col">
-
-            <p class="text-5xl font-bold mt-3">Sambutan Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg text-[44px]">Duwet</span>
+        <div class="justify-center text-center items-center mx-auto text-white flex z-10 flex-col">
+            <p class="sm:text-5xl text-2xl font-bold mt-3">Sambutan Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-2xl">Duwet</span>
             </p>
         </div>
     </section>
 
     <!-- Layout Grid -->
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
                 @php
                     $sambutan = \App\Models\Sambutan::latest()->first();
                 @endphp
                 @if ($sambutan)
                     <img src="{{ asset('storage/' . $sambutan->gambar) }}" alt="Kades Desa Duwet"
-                        class="rounded-lg shadow-lg w-full h-[400px] object-cover">
+                        class="rounded-lg shadow-lg w-full h-auto object-cover">
 
-                    <h1 class="mt-6 text-gray-600 text-lg text-left font-semibold">{{ $sambutan->judul }}</h1>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800 uppercase">{{ $sambutan->judul }}</h1>
 
                     @php
                         // Memecah teks menjadi kalimat dengan titik sebagai pemisah
@@ -49,15 +48,15 @@
                     @endphp
 
                     @foreach ($paragrafArray as $index => $paragraf)
-                        <p class="mt-3 mb-4 text-gray-600 text-lg text-justify">
+                        <p class="mt-3 mb-4 text-gray-600 text-sm sm:text-base md:text-lg text-justify">
                             {!! implode(' ', $paragraf) !!}
                         </p>
                     @endforeach
 
-                    <h1 class="mt-6 text-gray-600 text-lg text-left font-semibold">Wassalamu’alaikum warahmatullahi
+                    <h1 class="mt-6 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Wassalamu’alaikum warahmatullahi
                         wabarakatuh.</h1>
-                    <p class="mt-10 text-gray-600 text-lg text-left font-semibold">Kepala Desa Duwet</p>
-                    <p class="mt-8 text-gray-600 text-lg text-left font-semibold">CHOLIS, S.Pd.I</p>
+                    <p class="mt-10 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Kepala Desa Duwet</p>
+                    <p class="mt-8 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">CHOLIS, S.Pd.I</p>
                     <!-- Container utama -->
                     <div
                         class="max-w-screen-lg w-full mx-auto bg-white p-4 shadow-lg rounded-md mt-20 border border-gray-200 text-sm">

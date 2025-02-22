@@ -15,7 +15,18 @@
 
         <div class="flex flex-wrap justify-center items-center gap-3 mt-6">
             @foreach ($layanans as $layanan)
-            <a href="#" class="group">
+            @php
+            $routes = [
+                'Profil' => route('sejarah'),
+                'Struktur' => route('strukturorganisasi'),
+                'Berita' => route('beritadesa'),
+                'E-Doc' => route('unduhan'),
+                'Statistik' => route('pekerjaan'),
+                'Layanan' => route('agenda'),
+            ];
+            $url = $routes[$layanan['jenis']] ?? '#';
+        @endphp
+            <a href="{{ $url }}" class="group">
                 <div class="flex-col py-2 w-24 rounded-lg bg-white group-hover:bg-transparent shadow-md bg-opacity-90 backdrop-blur-sm items-center justify-center flex">
                     <img src="{{ asset($layanan['icon']) }}" alt="{{ $layanan['jenis'] }}" class="h-8 w-auto object-contain">
                     <p class="text-[14px] text-center font-medium text-black group-hover:text-white">{{ $layanan['jenis'] }}</p>
@@ -33,7 +44,7 @@
             <p class="text-xl text-black font-semibold leading-none">Berita Terkini Desa</p>
             <div class="w-[40px] bg-[#35b242] h-[2px] rounded-lg"></div>
 
-            @foreach($beritas as $berita)
+            @foreach($beritaDesa as $berita)
                 <div class="flex sm:flex-row flex-col gap-3 items-center">
                     <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Berita Desa" class="h-48 sm:w-72 w-full object-cover bg-center rounded-lg">
                     <div class="flex-col space-y-3">
@@ -41,9 +52,11 @@
                         <div class="flex items-center gap-4">
                             <div class="flex gap-1 items-center">
                                 <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-4 w-auto object-contain">
-                                <p class="text-[14px] text-[#b0b0b0]">{{ $berita->formatted_tanggal }}</p>
-
-
+                                <p class="text-[14px] text-[#b0b0b0]">{{ \Carbon\Carbon::parse($berita->tanggal)->translatedFormat('l, d F Y') }}</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-4 w-auto">
+                                <p class="text-[15px] text-[#b0b0b0] text-justify">{{ $berita->penulis }}</p>
                             </div>
                         </div>
                         <p class="text-[14px] text-[#b0b0b0] text-justify line-clamp-3">{{ $berita->deskripsi }}</p>
@@ -130,7 +143,7 @@
             @foreach ($perangkatdesas as $perangkatdesa)
             <div class="swiper-slide group">
                 <div class="bg-gray-200 rounded-lg justify-center h-[270px] w-auto flex relative group-hover:bg-[#00df82] transition-colors">
-                    <img src="{{ asset('storage/' . $perangkatdesa->foto) }}" alt="{{ $perangkatdesa->nama }}" class="max-h-full w-auto object-contain pt-3">
+                    <img src="{{ asset('storage/' . $perangkatdesa->gambar) }}" alt="{{ $perangkatdesa->nama }}" class="max-h-full w-auto object-contain pt-3">
                     <div class="bg-[#00df82] hover:bg-white hover:text-[#00df82] text-white shadow-lg absolute rounded-lg bottom-2 w-[85%] mx-auto text-center py-2 transition-colors group-hover:bg-white group-hover:text-[#00df82]">
                         <p class="font-semibold text-[18px]">{{ $perangkatdesa->nama }}</p>
                         <p class="text-[14px] -mt-1">{{ $perangkatdesa->jabatan }}</p>
@@ -154,14 +167,26 @@
         <div class="w-[70px] bg-[#35b242] my-4 h-[2px] rounded-lg"></div>
     </div>
     
-    <div class="grid grid-cols-5 max-lg:grid-cols-2 max-sm:grid-cols-1 sm:gap-2 gap-4 justify-center">
-        @foreach ($potensidesas as $item)
-        <a href="">
-            <div class="{{ $item->grid_class }} relative group">
-                <img src="{{ asset('storage/' . $item->gambar) }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
+    {{-- POTENSI DESA --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 justify-center">
+        <a href="potensi/bidang-pariwisata">
+            <div class="relative group">
+                <img src="{{ asset('/assets/images/village.jpg') }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
                 <div class="absolute left-0 bottom-0 w-full sm:h-[40%] h-[50%] bg-gradient-to-t from-black to-transparent rounded-b-lg flex flex-col items-start justify-end p-3">
-                    <p class="text-white text-[16px] font-medium">{{ $item->bidang }}</p>
-                    {{-- <p class="text-white text-[14px] line-clamp-1">{{ $item->deskripsi }}</p> --}}
+                    <p class="text-white text-[16px] font-medium">Bidang Pariwisata</p>
+                </div>
+
+                <div class="absolute inset-0 rounded-lg bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <img src="{{ asset('/assets/images/village.jpg') }}" class="h-10 w-auto object-contain">
+                    <p class="text-white text-[12px] font-medium mt-1">Lihat selengkapnya</p>
+                </div>
+            </div>
+        </a>
+        <a href="potensi/bidang-pertanian">
+            <div class="relative group">
+                <img src="{{ asset('/assets/images/village.jpg') }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
+                <div class="absolute left-0 bottom-0 w-full sm:h-[40%] h-[50%] bg-gradient-to-t from-black to-transparent rounded-b-lg flex flex-col items-start justify-end p-3">
+                    <p class="text-white text-[16px] font-medium">Bidang Pertanian</p>
                 </div>
 
                 <div class="absolute inset-0 rounded-lg bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -170,7 +195,46 @@
                 </div>
             </div>
         </a>
-        @endforeach
+        <a href="potensi/bidang-perikanan">
+            <div class="relative group">
+                <img src="{{ asset('/assets/images/village.jpg') }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
+                <div class="absolute left-0 bottom-0 w-full sm:h-[40%] h-[50%] bg-gradient-to-t from-black to-transparent rounded-b-lg flex flex-col items-start justify-end p-3">
+                    <p class="text-white text-[16px] font-medium">Bidang Perikanan</p>
+                </div>
+
+                <div class="absolute inset-0 rounded-lg bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <img src="{{ asset('assets/vector/right.png') }}" class="h-10 w-auto object-contain">
+                    <p class="text-white text-[12px] font-medium mt-1">Lihat selengkapnya</p>
+                </div>
+            </div>
+        </a>
+        <a href="potensi/bidang-industri">
+            <div class="relative group">
+                <img src="{{ asset('/assets/images/village.jpg') }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
+                <div class="absolute left-0 bottom-0 w-full sm:h-[40%] h-[50%] bg-gradient-to-t from-black to-transparent rounded-b-lg flex flex-col items-start justify-end p-3">
+                    <p class="text-white text-[16px] font-medium">Bidang Industri</p>
+                </div>
+
+                <div class="absolute inset-0 rounded-lg bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <img src="{{ asset('assets/vector/right.png') }}" class="h-10 w-auto object-contain">
+                    <p class="text-white text-[12px] font-medium mt-1">Lihat selengkapnya</p>
+                </div>
+            </div>
+        </a>
+        <a href="potensi/bidang-perkebunan">
+            <div class="relative group">
+                <img src="{{ asset('/assets/images/village.jpg') }}" alt="Potensi Desa" class="w-full sm:h-96 h-52 object-cover rounded-lg">
+                <div class="absolute left-0 bottom-0 w-full sm:h-[40%] h-[50%] bg-gradient-to-t from-black to-transparent rounded-b-lg flex flex-col items-start justify-end p-3">
+                    <p class="text-white text-[16px] font-medium">Bidang Perkebunan</p>
+                </div>
+
+                <div class="absolute inset-0 rounded-lg bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <img src="{{ asset('assets/vector/right.png') }}" class="h-10 w-auto object-contain">
+                    <p class="text-white text-[12px] font-medium mt-1">Lihat selengkapnya</p>
+                </div>
+            </div>
+        </a>
+
     </div>
     
     
