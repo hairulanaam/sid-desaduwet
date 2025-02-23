@@ -36,10 +36,6 @@ class InformasiDesaResource extends Resource
     {
         return parent::getEloquentQuery()->limit(1);
     }
-    public static function canCreate(): bool
-    {
-        return false;
-    }
 
     public static function form(Form $form): Form
     {
@@ -97,6 +93,7 @@ class InformasiDesaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
