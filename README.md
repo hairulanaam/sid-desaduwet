@@ -5,5 +5,4 @@
 git clone https://github.com/username/repository-name.git
 cd repository-name
 
-```md
-### 2️⃣ Install Dependencies
+### 3️⃣ Setup Environment
