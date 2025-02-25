@@ -23,7 +23,7 @@
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -52,9 +52,9 @@
 
         <!-- CHART BAGIAN -->
         <div
-            class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
+            class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Kelas Sosial</h2>
-            <div class="w-[400px] h-[400px]">
+            <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <canvas id="kelasSosialChart"></canvas>
             </div>
         </div>
@@ -64,12 +64,31 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
+    <!-- CHART.JS & PLUGIN CHART DATA LABELS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById('kelasSosialChart').getContext('2d');
 
-            var labels = {!! json_encode($kelasSosial->pluck('nama_kelas')) !!};
-            var dataValues = {!! json_encode($kelasSosial->pluck('jumlah_keluarga')) !!};
+            var allLabels = {!! json_encode($kelasSosial->pluck('nama_kelas')) !!};
+            var allDataValues = {!! json_encode($kelasSosial->pluck('jumlah_keluarga')) !!};
+
+            // Filter data yang memiliki nilai lebih dari nol
+            var filteredData = allDataValues.map((value, index) => ({
+                label: allLabels[index],
+                value: value
+            })).filter(item => item.value > 0);
+
+            if (filteredData.length === 0) {
+                document.getElementById('kelasSosialChart').parentElement.innerHTML =
+                    "<p class='text-center text-gray-500'>Tidak ada data untuk ditampilkan dalam grafik</p>";
+                return;
+            }
+
+            var labels = filteredData.map(item => item.label);
+            var dataValues = filteredData.map(item => item.value);
             var total = dataValues.reduce((a, b) => a + b, 0);
 
             var backgroundColors = [
@@ -85,14 +104,15 @@
                     labels: labels,
                     datasets: [{
                         data: dataValues,
-                        backgroundColor: backgroundColors,
-                        borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                        backgroundColor: backgroundColors.slice(0, labels.length),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color
+                            .replace('0.6', '1')),
                         borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // **Supaya chart tidak terlalu kecil**
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             position: 'bottom'
@@ -104,9 +124,16 @@
                                 weight: 'bold'
                             },
                             formatter: (value, context) => {
-                                return ((value / total) * 100).toFixed(1) +
-                                "%"; // **Menampilkan persen saja**
+                                return ((value / total) * 100).toFixed(1) + "%";
                             }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 10
                         }
                     }
                 },

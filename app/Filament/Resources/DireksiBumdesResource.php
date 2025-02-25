@@ -108,8 +108,7 @@ class DireksiBumdesResource extends Resource
                     ->label('Deskripsi'),
                 TextColumn::make('anggota_count')
                     ->label('Jumlah Anggota')
-                    ->getStateUsing(fn ($record) => is_array($record->anggota) ? count($record->anggota) : 0)
-                    ->sortable(),
+                    ->getStateUsing(fn ($record) => is_array($record->anggota) ? count($record->anggota) : 0),
                 TextColumn::make('created_at')
                     ->dateTime('d M Y H:i')
                     ->label('Dibuat'),

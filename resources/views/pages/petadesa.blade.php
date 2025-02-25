@@ -49,11 +49,10 @@
                     <table class="w-full min-w-max border-collapse border border-gray-300">
                         <thead>
                             <tr class="bg-[#42c85f] text-white text-center">
-                                <th class="border border-gray-300 px-4 py-2">No</th>
                                 <th class="border border-gray-300 px-4 py-2">Puskesmas</th>
                                 <th class="border border-gray-300 px-4 py-2">Masjid</th>
                                 <th class="border border-gray-300 px-4 py-2">SDN</th>
-                                <th class="border border-gray-300 px-4 py-2">Warkop</th>
+                                <th class="border border-gray-300 px-4 py-2">Kantor Desa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,7 +74,6 @@
                             @endphp
                             @forelse ($petaDesa as $index => $perangkat)
                                 <tr>
-                                    <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                     <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->nama) }}</td>
                                     <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->agama) }}</td>
                                     <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->jabatan) }}</td>
@@ -120,6 +118,15 @@
                                     class="flex items-center gap-1.5 bg-[#25D366] text-white px-3 py-1.5 rounded-md shadow-md text-sm transition-transform transform hover:scale-105">
                                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-12 12c0 2.122.555 4.137 1.62 5.926L.19 23.796a.9.9 0 0 0 .922 1.174c2.438-.179 4.764-.917 6.862-2.103a12 12 0 0 0 4.026.688c6.626 0 12-5.374 12-12S18.626 0 12 0zm4.82 16.065c-.293.822-1.478 1.512-2.044 1.6-.566.087-1.221.127-1.984-.228a10.148 10.148 0 0 1-3.863-3.09 10.505 10.505 0 0 1-2.337-4.317c-.41-1.594.429-2.387.915-2.632.505-.25.973-.315 1.372-.27.44.048.8.225 1.083.47.247.217.396.652.247 1.043a3.672 3.672 0 0 1-.63 1.105c-.173.253-.365.406-.164.797.2.391.866 1.428 1.858 2.25 1.059.896 1.92 1.19 2.348 1.34.428.15.777.13 1.06-.038.285-.167.608-.486.82-.762.2-.273.34-.575.533-.878.193-.304.456-.33.73-.213.273.117 1.765.83 2.067.99.302.16.503.233.573.363.07.13.07.88-.222 1.702z"/></svg>
                                     WhatsApp
+                                </a>
+
+                                <a href="https://t.me/share/url?url={{ urlencode(url()->current()) }}"
+                                    class="flex items-center gap-1.5 bg-[#0088CC] text-white px-3 py-1.5 rounded-md shadow-md text-sm transition-transform transform hover:scale-105">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path
+                                            d="M21.543 2.467a1.074 1.074 0 0 0-1.118-.087L2.365 10.113a1.073 1.073 0 0 0-.073 1.947l4.68 1.94 1.66 5.538a1.073 1.073 0 0 0 1.648.57l3.012-2.504 4.48 3.25a1.073 1.073 0 0 0 1.66-.682l2.622-14.558a1.073 1.073 0 0 0-.511-1.137z" />
+                                    </svg>
+                                    Telegram
                                 </a>
                             </div>
                         </div>

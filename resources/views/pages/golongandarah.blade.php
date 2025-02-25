@@ -23,7 +23,7 @@
             </h1>
             
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>

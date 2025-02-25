@@ -28,17 +28,17 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN PROFIL BUMDES (2 KOLOM KIRI) -->
-        <div class="md:col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
                 @php
                     $profilbumdes = \App\Models\ProfilBumdes::latest()->first();
                 @endphp
                 @if ($profilbumdes)
                     <img src="{{ asset('storage/' . $profilbumdes->gambar) }}" alt="Profil Bumdes Desa Duwet"
-                        class="rounded-lg shadow-lg w-full h-[400px] object-cover">
-                    <h1 class="uppercase text-3xl font-bold mt-6 text-gray-800 text-center">{{$profilbumdes->judul }}</h1>
+                        class="rounded-lg shadow-lg w-full h-auto object-cover">
+                    <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mt-6">{{$profilbumdes->judul }}</h1>
                     @php
     // Memecah teks menjadi kalimat dengan titik sebagai pemisah
     $kalimatArray = preg_split('/(?<=[.!?])\s+/', e($profilbumdes->deskripsi));
@@ -46,7 +46,7 @@
 @endphp
 
 @foreach ($paragrafArray as $index => $paragraf)
-    <p class="mt-3 mb-4 text-gray-600 text-lg text-justify">
+    <p class="text-gray-600 text-base sm:text-lg lg:text-xl text-justify mt-3 sm:mt-4 lg:mt-6">
         @if ($index == 0)
             <strong>Desa Duwet - </strong>
         @endif
@@ -62,9 +62,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Fakta 1 -->
         <div class="flex items-start gap-4 bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-            <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full overflow-hidden">
-                <img src="{{ asset('/assets/images/village.jpg') }}" class="w-full h-full object-cover rounded-full">
-            </div>
             <div>
                 <h3 class="text-lg font-semibold text-gray-800">Asal Nama Duwet</h3>
                 <p class="text-gray-600 text-sm">Nama "Duwet" berasal dari pohon Duwet yang dulu banyak tumbuh di desa ini.</p>
@@ -73,9 +70,6 @@
 
         <!-- Fakta 2 -->
         <div class="flex items-start gap-4 bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full overflow-hidden">
-                <img src="{{ asset('/assets/images/village.jpg') }}" class="w-full h-full object-cover rounded-full">
-            </div>
             <div>
                 <h3 class="text-lg font-semibold text-gray-800">Tradisi Unik</h3>
                 <p class="text-gray-600 text-sm">Desa ini memiliki tradisi tahunan "Sedekah Bumi" sebagai wujud syukur masyarakat.</p>

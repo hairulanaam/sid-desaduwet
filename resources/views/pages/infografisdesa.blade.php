@@ -28,15 +28,15 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN INFOGRAFIS DESA -->
-        <div class="md:col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="uppercase text-2xl font-semibold text-gray-800 text-center">{{ $infografis->Judul }}</h2>
+                <h2 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-5">{{ $infografis->Judul }}</h2>
                 @if ($infografis)
                     <img src="{{ Storage::url($infografis->Gambar) }}" alt="Infografis Desa"
-                        class="rounded-lg shadow-lg w-full h-[400px] object-cover mt-4">
-                    <p class="mt-3 text-lg text-justify">{{ $infografis->Deskripsi }}</p>
+                        class="rounded-lg shadow-lg w-full h-auto object-cover mt-4">
+                    <p class="text-gray-600 text-base sm:text-lg lg:text-xl text-justify mt-3 sm:mt-4 lg:mt-6">{{ $infografis->Deskripsi }}</p>
                 @else
                     <p class="text-center text-gray-600">Belum ada data infografis organisasi.</p>
                 @endif

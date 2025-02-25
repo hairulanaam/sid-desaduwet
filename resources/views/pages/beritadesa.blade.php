@@ -41,7 +41,7 @@
                         <div class="flex flex-wrap items-center gap-4 text-gray-500 text-sm">
                             <div class="flex items-center gap-1">
                                 <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-4 w-auto">
-                                <p class="text-[15px] text-[#b0b0b0]">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                                <p class="text-[15px] text-[#b0b0b0]">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('l, d F Y') }}</p>
                             </div>
                             <div class="flex items-center gap-1">
                                 <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-4 w-auto">
@@ -148,7 +148,7 @@
                             <div class="flex flex-wrap gap-2 text-gray-500 text-xs mt-1">
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-3 w-auto">
-                                    <p>{{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('l, d F Y') }}</p>
+                                    <p>{{ \Carbon\Carbon::parse($berita->tanggal)->translatedFormat('l, d F Y') }}</p>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/vector/user.png') }}" alt="Penulis" class="h-3 w-auto">

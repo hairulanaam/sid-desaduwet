@@ -23,12 +23,12 @@
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
                             <th class="border border-gray-300 px-4 py-2">Kategori</th>
-                            <th class="border border-gray-300 px-4 py-2">Jumlah Keluarga</th>
+                            <th class="border border-gray-300 px-4 py-2">Jumlah</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -76,11 +76,12 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Jumlah Keluarga",
+                        label: "Jumlah",
                         data: dataValues,
                         backgroundColor: 'rgba(255, 99, 132, 0.7)',
                         borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        barThickness: 150
                     }]
                 },
                 options: {

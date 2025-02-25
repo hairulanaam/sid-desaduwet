@@ -23,7 +23,7 @@
             </h1>
             
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -56,7 +56,7 @@
 
         <!-- CHART BAGIAN -->
         <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6 mt-6">
-            <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Pendidikan</h2>
+            <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Pekerjaan</h2>
             <canvas id="pendidikanChart"></canvas>
         </div>
     </div>
@@ -69,8 +69,7 @@
 
             var chartData = {
                 labels: {!! json_encode($pendidikan->pluck('nama_pendidikan')) !!},
-                datasets: [
-                    {
+                datasets: [{
                         label: 'Laki-Laki',
                         backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',
@@ -93,7 +92,11 @@
                 options: {
                     responsive: true,
                     scales: {
+                        x: {
+                            stacked: true // Menumpuk laki-laki dan perempuan di satu bar
+                        },
                         y: {
+                            stacked: true,
                             beginAtZero: true
                         }
                     }

@@ -36,10 +36,11 @@
                     $sambutan = \App\Models\Sambutan::latest()->first();
                 @endphp
                 @if ($sambutan)
-                    <img src="{{ asset('storage/' . $sambutan->gambar) }}" alt="Kades Desa Duwet"
-                        class="rounded-lg shadow-lg w-full h-auto object-cover">
+                    <img src="{{ asset('storage/' . $sambutan->gambar) }}" alt="Sambutan Desa Duwet"
+                        class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]">
 
-                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800 uppercase">{{ $sambutan->judul }}</h1>
+                    <h1 class="mt-6 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">
+                        {{ $sambutan->judul }}</h1>
 
                     @php
                         // Memecah teks menjadi kalimat dengan titik sebagai pemisah
@@ -53,10 +54,11 @@
                         </p>
                     @endforeach
 
-                    <h1 class="mt-6 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Wassalamu’alaikum warahmatullahi
+                    <h1 class="mt-6 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Wassalamu’alaikum
+                        warahmatullahi
                         wabarakatuh.</h1>
                     <p class="mt-10 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Kepala Desa Duwet</p>
-                    <p class="mt-8 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">CHOLIS, S.Pd.I</p>
+                    <p class="mt-8 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Nama Kepala Desa, S.Pd.I</p>
                     <!-- Container utama -->
                     <div
                         class="max-w-screen-lg w-full mx-auto bg-white p-4 shadow-lg rounded-md mt-20 border border-gray-200 text-sm">
@@ -163,8 +165,7 @@
                             </p>
                             <div class="flex flex-wrap gap-2 text-gray-500 text-xs mt-1">
                                 <div class="flex items-center gap-1">
-                                    <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender"
-                                        class="h-3 w-auto">
+                                    <img src="{{ asset('assets/vector/calendar.png') }}" alt="Kalender" class="h-3 w-auto">
                                     <p>{{ \Carbon\Carbon::parse($berita->tanggal)->translatedFormat('l, d F Y') }}</p>
                                 </div>
                                 <div class="flex items-center gap-1">
@@ -178,8 +179,7 @@
                             <a href="{{ route('berita.show', $berita->id) }}"
                                 class="flex items-center gap-2 text-green-600 text-xs font-semibold mt-2 hover:underline">
                                 <p>Baca Selengkapnya</p>
-                                <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow"
-                                    class="h-3 w-auto">
+                                <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow" class="h-3 w-auto">
                             </a>
                         </div>
                     </div>

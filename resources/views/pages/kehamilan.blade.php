@@ -23,7 +23,7 @@
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -54,9 +54,10 @@
         </div>
 
         <!-- CHART BAGIAN -->
-        <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6 mt-6">
+        <div
+            class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Kehamilan</h2>
-            <div class="relative w-full h-[300px]"> <!-- Menyesuaikan ukuran grafik -->
+            <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <canvas id="kehamilanChart"></canvas>
             </div>
         </div>
@@ -65,6 +66,7 @@
 
     <!-- CHART.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -73,30 +75,48 @@
             var labels = {!! json_encode($kehamilan->pluck('kategori')) !!};
             var dataValues = {!! json_encode($kehamilan->pluck('jumlah_penduduk')) !!};
 
+            var total = dataValues.reduce((a, b) => a + b, 0);
+
+            var backgroundColors = [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ];
+
             new Chart(ctx, {
-                type: 'bar',
+                type: 'pie',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Jumlah",
                         data: dataValues,
-                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: backgroundColors.slice(0, labels.length),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.7', '1')),
                         borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // Pastikan aspect ratio bisa disesuaikan
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 10 // Supaya angka lebih rapih
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        datalabels: {
+                            color: '#000',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            formatter: (value, context) => {
+                                return ((value / total) * 100).toFixed(1) + "%";
                             }
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
         });
     </script>

@@ -30,9 +30,9 @@
     </section>
 
     <!-- Layout Grid -->
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN USP DESA (KIRI) -->
-        <div class="md:col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
                 @php
                     $uspdesa = \App\Models\UspDesa::latest()->paginate(2); // Pagination 2 item per halaman
@@ -42,16 +42,16 @@
                     @foreach ($uspdesa as $bidang)
                         <div class="mb-8">
                             <!-- Judul -->
-                            <h1 class="uppercase text-3xl font-semibold text-gray-800 text-center mb-3">
+                            <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-5">
                                 {{ $bidang->judul }}
                             </h1>
 
                             <!-- Gambar -->
                             <img src="{{ asset('storage/' . $bidang->gambar) }}" alt="{{ $bidang->judul }}"
-                                class="rounded-lg shadow-lg w-full h-[400px] object-cover mb-3">
+                                class="rounded-lg shadow-lg w-full h-auto object-cover">
 
                             <!-- Deskripsi -->
-                            <p class="text-gray-600 text-lg text-justify">
+                            <p class="text-gray-600 text-base sm:text-lg lg:text-xl text-justify mt-3 sm:mt-4 lg:mt-6">
                                 {!! nl2br(e($bidang->deskripsi)) !!}
                             </p>
 

@@ -32,16 +32,15 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
-                        @forelse ($giziburuk as $index => $giziburuk)
+                        @forelse ($giziburuk as $index => $gizi)
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $giziburuk->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $giziburuk->jumlah }}
-                                </td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $gizi->kategori }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $gizi->jumlah }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
+                                <td colspan="3" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
                                     Belum ada data gizi buruk
                                 </td>
                             </tr>
@@ -52,49 +51,68 @@
         </div>
 
         <!-- CHART BAGIAN -->
-        <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6 mt-6">
+        <div
+            class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Gizi Buruk</h2>
-            <div class="relative w-full h-[300px]"> <!-- Menyesuaikan ukuran grafik -->
-                <canvas id="giziburukChart"></canvas>
+            <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+                <canvas id="giziburukPieChart"></canvas>
             </div>
         </div>
     </div>
 
-
     <!-- CHART.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('giziburukChart').getContext('2d');
+            var ctx = document.getElementById('giziburukPieChart').getContext('2d');
 
             var labels = {!! json_encode($giziburuk->pluck('kategori')) !!};
             var dataValues = {!! json_encode($giziburuk->pluck('jumlah')) !!};
 
+            var total = dataValues.reduce((a, b) => a + b, 0);
+
+            var backgroundColors = [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)'
+            ];
+
             new Chart(ctx, {
-                type: 'bar',
+                type: 'pie',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Jumlah",
                         data: dataValues,
-                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: backgroundColors.slice(0, labels.length),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.6', '1')),
                         borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // Pastikan aspect ratio bisa disesuaikan
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 10 // Supaya angka lebih rapih
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        datalabels: {
+                            color: '#000',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            formatter: (value, context) => {
+                                return ((value / total) * 100).toFixed(1) + "%";
                             }
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
         });
     </script>

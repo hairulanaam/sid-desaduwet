@@ -50,11 +50,11 @@
     <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-lg sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800 uppercase text-center">STRUKTUR PEMERINTAHAN DESA DUWET</h2>
+                <h2 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mt-2 mb-6">STRUKTUR PEMERINTAHAN DESA DUWET</h2>
 
                 @if ($struktur)
-                <img src="{{ Storage::url($struktur->gambar) }}" alt="Struktur Organisasi Desa"
-                class="rounded-lg shadow-lg w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover mt-4">            
+                <img src="{{ asset('storage/' . $struktur->gambar) }}" alt="Struktur Organisasi Desa Duwet"
+                        class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]mt-4">            
 
                     <p class="text-lg md:text-xl font-semibold mt-6 text-gray-600">{{ $struktur->judul }}</p>
                     <p class="mt-3 text-gray-800 text-sm md:text-lg font-bold">{{ $struktur->deskripsi }}</p>
@@ -65,7 +65,7 @@
                 <!-- TABEL STRUKTUR ORGANISASI -->
                 <div class="mt-10">
                     <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm md:text-base">
+                        <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                             <thead class="bg-[#42c85f] text-white text-center">
                                 <tr>
                                     <th class="border border-gray-300 px-4 py-2 text-center align-middle" rowspan="2">NO

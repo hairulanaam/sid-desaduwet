@@ -21,9 +21,9 @@
             <h1 class="text-1xl uppercase font-bold mb-4 text-gray-800 text-center">
                 PEKERJAAN DESA DUWET KECAMATAN PANARUKAN, KABUPATEN SITUBONDO, Jawa Timur
             </h1>
-            
+
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -51,7 +51,7 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>      
+            </div>
         </div>
 
         <!-- CHART BAGIAN -->
@@ -69,8 +69,7 @@
 
             var chartData = {
                 labels: {!! json_encode($pekerjaan->pluck('nama_pekerjaan')) !!},
-                datasets: [
-                    {
+                datasets: [{
                         label: 'Laki-Laki',
                         backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',
@@ -93,7 +92,11 @@
                 options: {
                     responsive: true,
                     scales: {
+                        x: {
+                            stacked: true // Menumpuk laki-laki dan perempuan di satu bar
+                        },
                         y: {
+                            stacked: true,
                             beginAtZero: true
                         }
                     }

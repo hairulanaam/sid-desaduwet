@@ -43,26 +43,26 @@
     </section>
 
     <!-- KONTEN UTAMA -->
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="uppercase text-3xl font-semibold text-gray-800 text-center">{{ $struktur->judul }}</h2>
+                <h2 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-5">{{ $struktur->judul }}</h2>
                 
                 @if ($struktur)
                     <img src="{{ Storage::url($struktur->gambar) }}" alt="Direksi Bumdes Desa"
-                        class="rounded-lg shadow-lg w-full h-[400px] object-cover mt-4">
-                    <p class="mt-3 text-gray-600 text-lg text-justify">{{ $struktur->deskripsi }}</p>
+                        class="rounded-lg shadow-lg w-full h-auto object-cover mt-4">
+                    <p class="text-gray-600 text-base sm:text-lg lg:text-xl text-justify mt-3 sm:mt-4 lg:mt-6">{{ $struktur->deskripsi }}</p>
                 @else
                     <p class="text-center text-gray-600">Belum ada data direksi bumdes.</p>
                 @endif
                 <!-- TABEL Direksi Bumdes -->
                 <div class="mt-10">
                     <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-gray-300 text-gray-800">
+                        <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                             <thead class="bg-[#42c85f] text-white text-center">
                                 <tr>
                                     <th class="border border-gray-300 px-4 py-2 text-center align-middle" rowspan="2">NO</th>
-                                    <th class="border border-gray-300 px-4 py-2 text-centeralign-middle" rowspan="2">NAMA LENGKAP</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-center align-middle" rowspan="2">NAMA LENGKAP</th>
                                     <th class="border border-gray-300 px-4 py-2 text-center" colspan="2">SK PENGANGKATAN</th>
                                     <th class="border border-gray-300 px-4 py-2 text-center align-middle" rowspan="2">JABATAN</th>
                                 </tr>

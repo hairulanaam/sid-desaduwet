@@ -37,7 +37,7 @@
                 @endphp
                 @if ($sejarah)
                     <img src="{{ asset('storage/' . $sejarah->gambar) }}" alt="Sejarah Desa Duwet"
-                        class="rounded-lg shadow-lg w-full h-auto object-cover">
+                        class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]">
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800 uppercase">{{ $sejarah->judul }}
                     </h1>
                     @php

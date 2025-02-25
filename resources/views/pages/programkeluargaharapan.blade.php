@@ -23,7 +23,7 @@
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -55,9 +55,9 @@
 
         <!-- CHART BAGIAN -->
         <div
-            class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
+            class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Program Keluarga Harapan</h2>
-            <div class="w-[400px] h-[400px]">
+            <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <canvas id="pkhChart"></canvas>
             </div>
         </div>
@@ -71,15 +71,29 @@
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById('pkhChart').getContext('2d');
 
-            var labels = {!! json_encode($programkeluargaharapan->pluck('nama_kelas')) !!};
-            var dataValues = {!! json_encode($programkeluargaharapan->pluck('jumlah_kepala_keluarga')) !!};
+            var allLabels = {!! json_encode($programkeluargaharapan->pluck('nama_kelas')) !!};
+            var allDataValues = {!! json_encode($programkeluargaharapan->pluck('jumlah_kepala_keluarga')) !!};
+
+            var filteredData = allDataValues.map((value, index) => ({
+                label: allLabels[index],
+                value: value
+            })).filter(item => item.value > 0);
+
+            if (filteredData.length === 0) {
+                document.getElementById('pkhChart').style.display = 'none';
+                document.getElementById('noDataMessage').classList.remove('hidden');
+                return;
+            }
+
+            var labels = filteredData.map(item => item.label);
+            var dataValues = filteredData.map(item => item.value);
             var total = dataValues.reduce((a, b) => a + b, 0);
 
             var backgroundColors = [
-                'rgba(255, 99, 132, 0.6)', // Merah Muda
-                'rgba(54, 162, 235, 0.6)', // Biru
-                'rgba(255, 206, 86, 0.6)', // Kuning
-                'rgba(75, 192, 192, 0.6)' // Hijau
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)'
             ];
 
             new Chart(ctx, {
@@ -88,8 +102,8 @@
                     labels: labels,
                     datasets: [{
                         data: dataValues,
-                        backgroundColor: backgroundColors,
-                        borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                        backgroundColor: backgroundColors.slice(0, labels.length),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.6', '1')),
                         borderWidth: 1
                     }]
                 },

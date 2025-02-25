@@ -23,7 +23,7 @@
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
@@ -57,7 +57,7 @@
         <div
             class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white shadow-md rounded-lg p-6 mt-6 flex flex-col items-center">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Jamkesmas</h2>
-            <div class="w-[400px] h-[400px]">
+            <div class="w-full max-w-xs sm:w-[400px] sm:h-[400px]">
                 <canvas id="jamkesmasChart"></canvas>
             </div>
         </div>

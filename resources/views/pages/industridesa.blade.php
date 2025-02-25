@@ -29,9 +29,9 @@
     </section>
 
     <!-- Layout Grid -->
-    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- KONTEN BIDANG INDUSTRI (KIRI) -->
-        <div class="md:col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
                 @php
                     $bidangindustri = \App\Models\BidangIndustri::latest()->paginate(2); // Pagination 2 item per halaman
@@ -41,16 +41,16 @@
                     @foreach ($bidangindustri as $bidang)
                         <div class="mb-8">
                             <!-- Judul -->
-                            <h1 class="uppercase text-3xl font-semibold text-gray-800 text-center mb-3">
+                            <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-5">
                                 {{ $bidang->judul }}
                             </h1>
 
                             <!-- Gambar -->
                             <img src="{{ asset('storage/' . $bidang->gambar) }}" alt="{{ $bidang->judul }}"
-                                class="rounded-lg shadow-lg w-full h-[400px] object-cover mb-3">
+                                class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]">
 
                             <!-- Deskripsi -->
-                            <p class="text-gray-600 text-lg text-justify">
+                            <p class="text-gray-600 text-sm sm:text-base lg:text-lg text-justify mt-2 sm:mt-3 lg:mt-4">
                                 {!! nl2br(e($bidang->deskripsi)) !!}
                             </p>
 
