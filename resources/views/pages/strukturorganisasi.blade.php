@@ -54,7 +54,7 @@
 
                 @if ($struktur)
                 <img src="{{ asset('storage/' . $struktur->gambar) }}" alt="Struktur Organisasi Desa Duwet"
-                        class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]mt-4">            
+                        class="rounded-lg shadow-lg w-full max-w-full h-auto md:h-96 lg:h-[500px]mt-4">            
 
                     <p class="text-lg md:text-xl font-semibold mt-6 text-gray-600">{{ $struktur->judul }}</p>
                     <p class="mt-3 text-gray-800 text-sm md:text-lg font-bold">{{ $struktur->deskripsi }}</p>
@@ -72,14 +72,8 @@
                                     </th>
                                     <th class="border border-gray-300 px-4 py-2 text-Center align-middle" rowspan="2">
                                         NAMA LENGKAP</th>
-                                    <th class="border border-gray-300 px-4 py-2 text-center" colspan="2">SK PENGANGKATAN
-                                    </th>
                                     <th class="border border-gray-300 px-4 py-2 text-center align-middle" rowspan="2">
                                         JABATAN</th>
-                                </tr>
-                                <tr>
-                                    <th class="border border-gray-300 px-4 py-2 text-center">NOMOR</th>
-                                    <th class="border border-gray-300 px-4 py-2 text-center">TANGGAL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,11 +84,6 @@
                                             </td>
                                             <td class="uppercase border border-gray-300 px-4 py-2">
                                                 {{ formatText($anggota['nama_lengkap']) }}</td>
-                                            <td class="uppercase border border-gray-300 px-4 py-2 text-center">
-                                                {{ $anggota['sk_nomor'] ?? '-' }}</td>
-                                            <td class="uppercase border border-gray-300 px-4 py-2 text-center">
-                                                {{ isset($anggota['sk_tanggal']) ? Carbon::parse($anggota['sk_tanggal'])->translatedFormat('d F Y') : '-' }}
-                                            </td>
                                             <td class="uppercase border border-gray-300 px-4 py-2 text-center">
                                                 {{ formatText($anggota['jabatan']) }}</td>
 

@@ -52,9 +52,7 @@ class LembagaDesaResource extends Resource
                 ->relationship('anggota') // Pastikan model memiliki relasi anggota()
                 ->schema([
                     TextInput::make('nama')->label('Nama')->required(),
-                    TextInput::make('agama')->label('Agama')->required(),
                     TextInput::make('jabatan')->label('Jabatan')->required(),
-                    TextInput::make('kontak')->label('Kontak')->required(),
                 ])
                 ->columns(4) // Agar tampil rapi dalam 4 kolom
                 ->addActionLabel('Tambah Anggota'),

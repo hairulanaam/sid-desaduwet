@@ -32,20 +32,32 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalBantuan = 0;
+                        @endphp
                         @forelse ($bantuansiswamiskin as $index => $bantuansiswamiskinItem)
+                            @php
+                                $totalBantuan += $bantuansiswamiskinItem->jumlah;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $bantuansiswamiskinItem->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $bantuansiswamiskinItem->jumlah }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $bantuansiswamiskinItem->jumlah }}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
+                                <td colspan="3" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
                                     Belum ada data bantuan siswa miskin
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalBantuan }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -100,7 +112,7 @@
                             position: 'bottom'
                         },
                         datalabels: {
-                            color: '#fff',
+                            color: '#000',
                             font: {
                                 weight: 'bold'
                             },

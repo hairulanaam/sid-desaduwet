@@ -32,11 +32,18 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
-                        @forelse ($kelasSosial as $index => $kelasSosial)
+                        @php
+                            $totalKeluarga = 0;
+                        @endphp
+                        @forelse ($kelasSosial as $index => $kelasSosialItem)
+                            @php
+                                $totalKeluarga += $kelasSosialItem->jumlah_keluarga;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $kelasSosial->nama_kelas }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $kelasSosial->jumlah_keluarga }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $kelasSosialItem->nama_kelas }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $kelasSosialItem->jumlah_keluarga }}
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -45,6 +52,10 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <tr class="bg-gray-100 font-bold">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalKeluarga }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

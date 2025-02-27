@@ -32,11 +32,17 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalGiziBuruk = 0;
+                        @endphp
                         @forelse ($giziburuk as $index => $gizi)
+                            @php
+                                $totalGiziBuruk += $gizi->jumlah;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $gizi->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $gizi->jumlah }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $gizi->jumlah }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -45,6 +51,11 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Total -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalGiziBuruk }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -89,7 +100,8 @@
                     datasets: [{
                         data: dataValues,
                         backgroundColor: backgroundColors.slice(0, labels.length),
-                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.6', '1')),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color
+                            .replace('0.6', '1')),
                         borderWidth: 1
                     }]
                 },

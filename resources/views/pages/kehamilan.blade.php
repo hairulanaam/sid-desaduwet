@@ -33,12 +33,22 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalPerempuan = 0;
+                            $totalPenduduk = 0;
+                        @endphp
                         @forelse ($kehamilan as $index => $kehamilanItem)
+                            @php
+                                $totalPerempuan += $kehamilanItem->perempuan;
+                                $totalPenduduk += $kehamilanItem->jumlah_penduduk;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $kehamilanItem->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $kehamilanItem->perempuan }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $kehamilanItem->jumlah_penduduk }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $kehamilanItem->perempuan }}
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $kehamilanItem->jumlah_penduduk }}
                                 </td>
                             </tr>
                         @empty
@@ -48,6 +58,12 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPerempuan }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPenduduk }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -93,7 +109,8 @@
                     datasets: [{
                         data: dataValues,
                         backgroundColor: backgroundColors.slice(0, labels.length),
-                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.7', '1')),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color
+                            .replace('0.7', '1')),
                         borderWidth: 1
                     }]
                 },

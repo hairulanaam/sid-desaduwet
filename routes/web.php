@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingController;
 Route::get('/', [LandingController::class, 'index'])->name('home');
 
 
+Route::get('/statistik/jumlah-penduduk', [LandingController::class, 'jumlahpenduduk'])->name('jumlahpenduduk');
 Route::get('/statistik/pekerjaan', [LandingController::class, 'pekerjaan'])->name('pekerjaan');
 Route::get('/statistik/pendidikan', [LandingController::class, 'pendidikan'])->name('pendidikan');
 Route::get('/statistik/status-perkawinan', [LandingController::class, 'statusperkawinan'])->name('statusperkawinan');

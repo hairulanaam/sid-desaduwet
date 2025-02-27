@@ -32,20 +32,31 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalBuruhMigran = 0;
+                        @endphp
                         @forelse ($buruhmigran as $index => $buruhmigranItem)
+                            @php
+                                $totalBuruhMigran += $buruhmigranItem->jumlah;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $buruhmigranItem->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $buruhmigranItem->jumlah }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $buruhmigranItem->jumlah }}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
-                                    Belum ada data kehamilan
+                                <td colspan="3" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
+                                    Belum ada data buruh migran
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalBuruhMigran }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -90,7 +101,8 @@
                     datasets: [{
                         data: dataValues,
                         backgroundColor: backgroundColors.slice(0, labels.length),
-                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.7', '1')),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color
+                            .replace('0.7', '1')),
                         borderWidth: 1
                     }]
                 },

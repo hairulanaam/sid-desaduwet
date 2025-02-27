@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-    'title' => 'Golongan Darah Desa Duwet',
-    'active' => 'golongandarah',
-    'page' => 'golongandarah',
+    'title' => 'Jumlah Penduduk Desa Duwet',
+    'active' => 'jumlahpenduduk',
+    'page' => 'jumlahpenduduk',
 ])
 
 @section('content')
@@ -9,8 +9,8 @@
         style="background-image: url('{{ asset('/assets/images/village.jpg') }}');">
         <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
         <div class="justify-center text-center items-center mx-auto text-white flex z-10 flex-col">
-            <p class="sm:text-5xl text-2xl font-bold mt-3">Golongan Darah Desa
-                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-2xl">Duwet</span>
+            <p class="sm:text-5xl text-3xl font-bold mt-3">Jumlah Penduduk Desa
+                <span class="py-0 px-1 bg-[#2dba48] rounded-lg sm:text-[44px] text-3xl">Duwet</span>
             </p>
         </div>
     </section>
@@ -19,18 +19,19 @@
         <!-- KONTEN LEMBAGA & TABEL -->
         <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6">
             <h1 class="text-1xl uppercase font-bold mb-4 text-gray-800 text-center">
-                GOLONGAN DARAH DESA DUWET KECAMATAN PANARUKAN, KABUPATEN Situbondo, Jawa Timur
+                Jumlah Penduduk Berdasarkan Struktur Usia Desa Duwet Tahun 2014
             </h1>
 
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
+                <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base text-center">
                     <thead>
                         <tr class="bg-[#42c85f] text-white text-center">
                             <th class="border border-gray-300 px-4 py-2">No</th>
-                            <th class="border border-gray-300 px-4 py-2">Golongan Darah</th>
+                            <th class="border border-gray-300 px-4 py-2">Usia</th>
                             <th class="border border-gray-300 px-4 py-2">Laki-Laki</th>
                             <th class="border border-gray-300 px-4 py-2">Perempuan</th>
                             <th class="border border-gray-300 px-4 py-2">Jumlah Penduduk</th>
+
                         </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -39,36 +40,33 @@
                             $totalPerempuan = 0;
                             $totalPenduduk = 0;
                         @endphp
-                        @forelse ($golonganDarah as $index => $golonganDarahItem)
+                        @forelse ($jumlahPenduduk as $index => $item)
                             @php
-                                $totalLakiLaki += $golonganDarahItem->laki_laki;
-                                $totalPerempuan += $golonganDarahItem->perempuan;
-                                $totalPenduduk += $golonganDarahItem->jumlah_penduduk;
-                                $rowTotal = $golonganDarahItem->laki_laki + $golonganDarahItem->perempuan;
+                                $totalLakiLaki += $item->laki_laki;
+                                $totalPerempuan += $item->perempuan;
+                                $totalPenduduk += $item->jumlah_penduduk;
+                                $rowTotal = $item->laki_laki + $item->perempuan;
                             @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $golonganDarahItem->golongan_darah }}</td>
-                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $golonganDarahItem->laki_laki }}
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $golonganDarahItem->perempuan }}
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2 text-center">
-                                    {{ $golonganDarahItem->jumlah_penduduk }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $item->kategori }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $item->laki_laki }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $item->perempuan }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $item->jumlah_penduduk }}</td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="5" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
-                                    Belum ada data golongan darah
+                                    Belum ada data jumlah penduduk
                                 </td>
                             </tr>
                         @endforelse
                         <!-- Baris Jumlah -->
                         <tr class="bg-gray-100 font-bold text-center">
-                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
-                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalLakiLaki }}</td>
-                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPerempuan }}</td>
-                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPenduduk }}</td>
+                            <td class="border border-gray-300 px-4 py-2 font-bold" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 font-bold">{{ $totalLakiLaki }}</td>
+                            <td class="border border-gray-300 px-4 py-2 font-bold">{{ $totalPerempuan }}</td>
+                            <td class="border border-gray-300 px-4 py-2 font-bold">{{ $totalPenduduk }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -77,8 +75,8 @@
 
         <!-- CHART BAGIAN -->
         <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6 mt-6">
-            <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Golongan Darah</h2>
-            <canvas id="golonganDarahChart"></canvas>
+            <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Jumlah Penduduk</h2>
+            <canvas id="jumlahPendudukChart"></canvas>
         </div>
     </div>
 
@@ -86,23 +84,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('golonganDarahChart').getContext('2d');
+            var ctx = document.getElementById('jumlahPendudukChart').getContext('2d');
 
             var chartData = {
-                labels: {!! json_encode($golonganDarah->pluck('golongan_darah')) !!},
+                labels: {!! json_encode($jumlahPenduduk->pluck('kategori')) !!},
                 datasets: [{
                         label: 'Laki-Laki',
                         backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1,
-                        data: {!! json_encode($golonganDarah->pluck('laki_laki')) !!}
+                        data: {!! json_encode($jumlahPenduduk->pluck('laki_laki')) !!}
                     },
                     {
                         label: 'Perempuan',
                         backgroundColor: 'rgba(255, 99, 132, 0.6)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
-                        data: {!! json_encode($golonganDarah->pluck('perempuan')) !!}
+                        data: {!! json_encode($jumlahPenduduk->pluck('perempuan')) !!}
                     }
                 ]
             };
@@ -113,7 +111,11 @@
                 options: {
                     responsive: true,
                     scales: {
+                        x: {
+                            stacked: true // Menumpuk laki-laki dan perempuan di satu bar
+                        },
                         y: {
+                            stacked: true,
                             beginAtZero: true
                         }
                     }

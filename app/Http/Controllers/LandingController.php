@@ -40,7 +40,7 @@ use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\App;
 use App\Models\PerangkatDesa;
 use App\Models\InformasiDesa;
-use App\Models\PotensiDesa;
+use App\Models\JumlahPenduduk;
 
 App::setLocale('id');
 Carbon::setLocale('id');
@@ -79,8 +79,14 @@ class LandingController extends Controller
         $beritaDesa = BeritaDesa::latest()->take(3)->get();
         $perangkatdesas = PerangkatDesa::all();
         $informasidesas = InformasiDesa::first();
-        $potensidesas = PotensiDesa::all();
-        return view('pages.index', compact('layanans', 'perangkatdesas', 'informasidesas', 'potensidesas', 'beritaDesa'));
+        return view('pages.index', compact('layanans', 'perangkatdesas', 'informasidesas', 'beritaDesa'));
+    }
+
+    public function jumlahpenduduk()
+    {
+        $jumlahPenduduk = JumlahPenduduk::oldest()->get();
+
+        return view('pages.jumlahpenduduk', compact('jumlahPenduduk'));
     }
 
     public function pekerjaan()

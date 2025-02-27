@@ -21,7 +21,7 @@
             <h1 class="text-1xl uppercase font-bold mb-4 text-gray-800 text-center">
                 STATUS PERKAWINAN DESA DUWET KECAMATAN PANARUKAN, KABUPATEN Situbondo, Jawa Timur
             </h1>
-            
+
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse border border-gray-300 text-gray-800 text-sm sm:text-base">
                     <thead>
@@ -34,13 +34,28 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalLakiLaki = 0;
+                            $totalPerempuan = 0;
+                            $totalPenduduk = 0;
+                        @endphp
                         @forelse ($statusPerkawinan as $index => $statusPerkawinanItem)
+                            @php
+                                $totalLakiLaki += $statusPerkawinanItem->laki_laki;
+                                $totalPerempuan += $statusPerkawinanItem->perempuan;
+                                $totalPenduduk += $statusPerkawinanItem->jumlah_penduduk;
+                                $rowTotal = $statusPerkawinanItem->laki_laki + $statusPerkawinanItem->perempuan;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $statusPerkawinanItem->status_perkawinan }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $statusPerkawinanItem->laki_laki }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $statusPerkawinanItem->perempuan }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $statusPerkawinanItem->jumlah_penduduk }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ $statusPerkawinanItem->status_perkawinan }}
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $statusPerkawinanItem->laki_laki }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $statusPerkawinanItem->perempuan }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $statusPerkawinanItem->jumlah_penduduk }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -49,9 +64,16 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalLakiLaki }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPerempuan }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPenduduk }}</td>
+                        </tr>
                     </tbody>
                 </table>
-            </div>      
+            </div>
         </div>
 
         <!-- CHART BAGIAN -->
@@ -69,8 +91,7 @@
 
             var chartData = {
                 labels: {!! json_encode($statusPerkawinan->pluck('status_perkawinan')) !!},
-                datasets: [
-                    {
+                datasets: [{
                         label: 'Laki-Laki',
                         backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',

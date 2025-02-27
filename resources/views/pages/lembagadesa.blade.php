@@ -57,9 +57,7 @@
                                 <tr class="bg-[#42c85f] text-white text-center">
                                     <th class="border border-gray-300 px-4 py-2">No</th>
                                     <th class="uppercase border border-gray-300 px-4 py-2">Nama</th>
-                                    <th class="uppercase border border-gray-300 px-4 py-2">Agama</th>
                                     <th class="uppercase border border-gray-300 px-4 py-2">Jabatan</th>
-                                    <th class="border border-gray-300 px-4 py-2">Kontak</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,9 +65,7 @@
                                     <tr class="text-center">
                                         <td class="border border-gray-300 px-4 py-2">{{ formatText($index + 1) }}</td>
                                         <td class="uppercase border border-gray-300 px-4 py-2">{{ formatText($anggota->nama) }}</td>
-                                        <td class="uppercase border border-gray-300 px-4 py-2">{{ formatText($anggota->agama) }}</td>
                                         <td class="uppercase border border-gray-300 px-4 py-2">{{ formatText($anggota->jabatan) }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ formatText($anggota->kontak) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

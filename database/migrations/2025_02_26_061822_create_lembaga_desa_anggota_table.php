@@ -14,9 +14,7 @@ return new class extends Migration {
                   ->cascadeOnDelete(); // LEBIH CLEAN DARIPADA onDelete('cascade')
 
             $table->string('nama');
-            $table->string('agama');
             $table->string('jabatan');
-            $table->string('kontak');
             $table->timestamps();
         });
     }

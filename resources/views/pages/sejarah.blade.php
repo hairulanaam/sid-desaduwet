@@ -28,59 +28,87 @@
         </div>
     </section>
 
+    <!-- Layout Grid -->
     <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- KONTEN SEJARAH (2 KOLOM KIRI) -->
+        <!-- KONTEN BIDANG PARIWISATA (KIRI) -->
         <div class="lg:col-span-2">
             <div class="bg-white shadow-md rounded-lg p-6">
                 @php
-                    $sejarah = \App\Models\Sejarah::latest()->first();
+                    $sejarah = \App\Models\Sejarah::oldest()->paginate(2); // Pagination 2 item per halaman
                 @endphp
-                @if ($sejarah)
-                    <img src="{{ asset('storage/' . $sejarah->gambar) }}" alt="Sejarah Desa Duwet"
-                        class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]">
-                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mt-4 text-gray-800 uppercase">{{ $sejarah->judul }}
-                    </h1>
-                    @php
-                        // Memecah teks menjadi kalimat dengan titik sebagai pemisah
-                        $kalimatArray = preg_split('/(?<=[.!?])\s+/', e($sejarah->deskripsi));
-                        $paragrafArray = array_chunk($kalimatArray, 4); // Setiap 4 kalimat menjadi 1 paragraf
-                    @endphp
 
-                    @foreach ($paragrafArray as $index => $paragraf)
-                        <p class="mt-3 mb-4 text-gray-600 text-sm sm:text-base md:text-lg text-justify">
-                            @if ($index == 0)
-                                <strong>Desa Duwet - </strong>
-                            @endif
-                            {!! implode(' ', $paragraf) !!}
-                        </p>
+                @if ($sejarah->count() > 0)
+                    @foreach ($sejarah as $item)
+                        <div class="mb-8">
+                            <!-- Judul -->
+                            <h1
+                                class="uppercase text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-5">
+                                {{ $item->judul }}
+                            </h1>
+
+                            <!-- Gambar -->
+                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul }}"
+                                class="rounded-lg shadow-lg w-full max-w-full h-auto object-cover md:h-96 lg:h-[500px]">
+
+                            <!-- Deskripsi -->
+                            @php
+                                // Memecah teks menjadi kalimat dengan titik sebagai pemisah
+                                $kalimatArray = preg_split('/(?<=[.!?])\s+/', e($item->deskripsi));
+                                $paragrafArray = array_chunk($kalimatArray, 4); // Setiap 4 kalimat menjadi 1 paragraf
+                            @endphp
+
+                            @foreach ($paragrafArray as $index => $paragraf)
+                                <p class="mt-3 mb-4 text-gray-600 text-sm sm:text-base md:text-lg text-justify">
+                                    {!! implode(' ', $paragraf) !!}
+                                </p>
+                            @endforeach
+
+                            <!-- Pemisah antar item -->
+                            <div class="w-full h-1 bg-gray-300 rounded-md my-6"></div>
+                        </div>
                     @endforeach
-                    <!-- BAGIAN TAMBAHAN (FAKTA MENARIK) -->
-                    <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-md">
-                        <div class="text-center mb-4">
-                            <h2 class="text-2xl font-bold text-gray-800">Fakta Menarik Tentang Desa Duwet</h2>
-                        </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Fakta 1 -->
-                            <div
-                                class="flex items-start gap-4 bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-800">Asal Nama Duwet</h3>
-                                    <p class="text-gray-600 text-sm">Nama "Duwet" berasal dari pohon Duwet yang dulu banyak
-                                        tumbuh di desa ini.</p>
-                                </div>
-                            </div>
+                    <!-- Navigasi Pagination -->
+                    <div class="flex justify-center mt-6">
+                        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center space-x-2">
+                            <!-- Tombol Previous -->
+                            @if ($sejarah->onFirstPage())
+                                <span class="px-3 py-2 text-gray-400 bg-gray-200 rounded-md cursor-not-allowed">
+                                    ❮
+                                </span>
+                            @else
+                                <a href="{{ $sejarah->previousPageUrl() }}"
+                                    class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                                    ❮
+                                </a>
+                            @endif
 
-                            <!-- Fakta 2 -->
-                            <div
-                                class="flex items-start gap-4 bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-800">Tradisi Unik</h3>
-                                    <p class="text-gray-600 text-sm">Desa ini memiliki tradisi tahunan "Sedekah Bumi"
-                                        sebagai wujud syukur masyarakat.</p>
-                                </div>
-                            </div>
-                        </div>
+                            <!-- Nomor Halaman -->
+                            @foreach ($sejarah->links()->elements[0] as $page => $url)
+                                @if ($page == $sejarah->currentPage())
+                                    <span class="px-3 py-2 bg-green-500 text-white rounded-md">
+                                        {{ $page }}
+                                    </span>
+                                @else
+                                    <a href="{{ $url }}"
+                                        class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                                        {{ $page }}
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            <!-- Tombol Next -->
+                            @if ($sejarah->hasMorePages())
+                                <a href="{{ $sejarah->nextPageUrl() }}"
+                                    class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                                    ❯
+                                </a>
+                            @else
+                                <span class="px-3 py-2 text-gray-400 bg-gray-200 rounded-md cursor-not-allowed">
+                                    ❯
+                                </span>
+                            @endif
+                        </nav>
                     </div>
                     <!-- Container utama -->
                     <div
@@ -139,7 +167,7 @@
                         </div>
                     </div>
                 @else
-                    <p class="text-gray-600 text-lg">Belum ada data sejarah yang tersedia.</p>
+                    <p class="text-gray-600 text-lg text-center">Belum ada bidang pariwisata yang tersedia.</p>
                 @endif
             </div>
         </div>

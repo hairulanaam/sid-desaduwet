@@ -14,7 +14,7 @@ class LembagaDesaAnggota extends Model
     protected $table = 'lembaga_desa_anggota';
 
     // Definisikan kolom yang bisa diisi secara massal
-    protected $fillable = ['lembaga_desa_id', 'nama', 'agama', 'jabatan', 'kontak'];
+    protected $fillable = ['lembaga_desa_id', 'nama', 'jabatan'];
 
     /**
      * Relasi ke Lembaga Desa

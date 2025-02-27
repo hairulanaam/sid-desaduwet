@@ -33,12 +33,20 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalPKH = 0;
+                            $totalKepalaKeluarga = 0;
+                        @endphp
                         @forelse ($programkeluargaharapan as $index => $pkh)
+                            @php
+                                $totalPKH += $pkh->menerima_pkh;
+                                $totalKepalaKeluarga += $pkh->jumlah_kepala_keluarga;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $pkh->nama_kelas }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $pkh->menerima_pkh }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $pkh->jumlah_kepala_keluarga }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $pkh->menerima_pkh }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">{{ $pkh->jumlah_kepala_keluarga }}
                                 </td>
                             </tr>
                         @empty
@@ -48,6 +56,12 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalPKH }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalKepalaKeluarga }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -103,7 +117,8 @@
                     datasets: [{
                         data: dataValues,
                         backgroundColor: backgroundColors.slice(0, labels.length),
-                        borderColor: backgroundColors.slice(0, labels.length).map(color => color.replace('0.6', '1')),
+                        borderColor: backgroundColors.slice(0, labels.length).map(color => color
+                            .replace('0.6', '1')),
                         borderWidth: 1
                     }]
                 },

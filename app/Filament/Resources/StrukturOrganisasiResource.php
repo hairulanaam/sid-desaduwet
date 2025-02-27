@@ -68,15 +68,6 @@ class StrukturOrganisasiResource extends Resource
                                 TextInput::make('nama_lengkap')
                                     ->label('Nama Lengkap')
                                     ->required(),
-
-                                TextInput::make('sk_nomor')
-                                    ->label('Nomor SK')
-                                    ->required(),
-
-                                DatePicker::make('sk_tanggal')
-                                    ->label('Tanggal SK')
-                                    ->required(),
-
                                 TextInput::make('jabatan')
                                     ->label('Jabatan')
                                     ->required(),

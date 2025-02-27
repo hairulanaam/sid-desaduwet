@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('pekerjaan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pekerjaan'); 
-            $table->integer('laki_laki')->default(0); 
-            $table->integer('perempuan')->default(0); 
             $table->integer('jumlah_penduduk')->default(0); 
             $table->timestamps();
         });

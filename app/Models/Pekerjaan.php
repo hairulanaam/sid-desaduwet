@@ -8,7 +8,7 @@ class Pekerjaan extends Model
 {
     protected $table = 'pekerjaan';
 
-    protected $fillable = ['nama_pekerjaan', 'laki_laki', 'perempuan', 'jumlah_penduduk'];
+    protected $fillable = ['nama_pekerjaan', 'jumlah_penduduk'];
 
     public static function boot()
     {

@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => 'Kepala Keluarga Harapan Desa Duwet',
+    'title' => 'Kepala Keluarga Desa Duwet',
     'active' => 'kepalakeluarga',
     'page' => 'kepalakeluarga',
 ])
@@ -32,11 +32,18 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalKeluarga = 0;
+                        @endphp
                         @forelse ($kepalakeluarga as $index => $kepalakeluargaItem)
+                            @php
+                                $totalKeluarga += $kepalakeluargaItem->jumlah_keluarga;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $kepalakeluargaItem->kategori }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $kepalakeluargaItem->jumlah_keluarga }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $kepalakeluargaItem->jumlah_keluarga }}
                                 </td>
                             </tr>
                         @empty
@@ -46,6 +53,11 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalKeluarga }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -54,7 +66,7 @@
         <!-- CHART BAGIAN -->
         <div class="w-full md:w-2/3 bg-white shadow-md rounded-lg p-6 mt-6">
             <h2 class="text-lg font-bold text-gray-800 text-center mb-4">Statistik Kepala Keluarga</h2>
-            <div class="relative w-full h-[300px]"> <!-- Menyesuaikan ukuran grafik -->
+            <div class="relative w-full h-[300px]">
                 <canvas id="kepalakeluargaChart"></canvas>
             </div>
         </div>

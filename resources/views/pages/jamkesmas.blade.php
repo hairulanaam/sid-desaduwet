@@ -33,12 +33,22 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @php
+                            $totalJamkesmas = 0;
+                            $totalKepalaKeluarga = 0;
+                        @endphp
                         @forelse ($jamkesmas as $index => $jamkesmasItem)
+                            @php
+                                $totalJamkesmas += $jamkesmasItem->menerima_jamkesmas;
+                                $totalKepalaKeluarga += $jamkesmasItem->jumlah_kepala_keluarga;
+                            @endphp
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-center">{{ $index + 1 }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $jamkesmasItem->nama_kelas }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $jamkesmasItem->menerima_jamkesmas }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $jamkesmasItem->jumlah_kepala_keluarga }}
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $jamkesmasItem->menerima_jamkesmas }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    {{ $jamkesmasItem->jumlah_kepala_keluarga }}
                                 </td>
                             </tr>
                         @empty
@@ -48,6 +58,12 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <!-- Baris Jumlah -->
+                        <tr class="bg-gray-100 font-bold text-center">
+                            <td class="border border-gray-300 px-4 py-2 text-center" colspan="2">Jumlah</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalJamkesmas }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">{{ $totalKepalaKeluarga }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
