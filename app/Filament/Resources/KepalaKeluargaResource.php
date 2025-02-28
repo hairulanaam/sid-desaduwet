@@ -47,7 +47,7 @@ class KepalaKeluargaResource extends Resource
                     ->maxLength(255),
                     
                 TextInput::make('jumlah_keluarga')
-                    ->label('Jumlah Keluarga')
+                    ->label('Jumlah')
                     ->numeric()
                     ->required(),
             ]);
@@ -63,7 +63,7 @@ class KepalaKeluargaResource extends Resource
                     ->searchable(),
                 
                 TextColumn::make('jumlah_keluarga')
-                    ->label('Jumlah Keluarga')
+                    ->label('Jumlah')
                     ->sortable(),
             ])
             ->filters([])

@@ -43,8 +43,6 @@ return [
 
     'default_filesystem_disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
 
-    'brand' => 'Admin Panel',
-
     /*
     |--------------------------------------------------------------------------
     | Assets Path

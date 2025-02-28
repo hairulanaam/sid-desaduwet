@@ -33,6 +33,8 @@ use App\Models\StatusPerkawinan;
 use App\Models\UndangUndang;
 use App\Models\Unduhan;
 use App\Models\VideoKegiatan;
+use Illuminate\Support\Facades\View;
+
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
@@ -303,6 +305,12 @@ class LandingController extends Controller
         $beritaDesa = BeritaDesa::latest()->take(3)->get();
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
         return view('pages.sejarah', compact('agendas','beritaDesa'));
+    }
+    public function geografisdesa()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.geografisdesa', compact('agendas','beritaDesa'));
     }
     public function visimisi ()
     {

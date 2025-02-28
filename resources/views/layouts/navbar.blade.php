@@ -68,6 +68,7 @@
                 <ul id="profilSubmenu" class="mt-2 space-y-2 pl-4 hidden submenu">
                     <li><a href="/profil/sejarah" class="text-sm">Sejarah</a></li>
                     <li><a href="/profil/katasambutan" class="text-sm">Sambutan</a></li>
+                    <li><a href="/profil/geografis-desa" class="text-sm">Geografis</a></li>
                     <li><a href="/profil/visi-misi" class="text-sm">Visi & Misi</a></li>
                     <li><a href="/profil/struktur-organisasi" class="text-sm">Struktur Organisasi</a></li>
                     <li><a href="/profil/perangkat-desa" class="text-sm">Sumber Daya Manusia</a></li>
@@ -221,6 +222,8 @@
                 <ul
                     class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                     <li><a href="/profil/sejarah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a>
+                    </li>
+                    <li><a href="/profil/geografis-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Geografis</a>
                     </li>
                     <li><a href="/profil/katasambutan"
                             class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
