@@ -60,10 +60,10 @@
                             </div>
                         </div>
                         <p class="text-[14px] text-[#b0b0b0] text-justify line-clamp-3">{{ $berita->deskripsi }}</p>
-                        <a href="">
-                            <div class="flex gap-1 items-center mt-2">
-                                <p class="text-[14px] font-semibold hover:underline">Baca Selengkapnya</p>
-                                <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow" class="h-4 w-auto">
+                        <a href="{{ route('berita.show', $berita->id) }}">
+                            <div class="flex gap-2 items-center mt-2">
+                                <p class="text-[15px] font-semibold hover:underline">Baca Selengkapnya</p>
+                                <img src="{{ asset('assets/vector/arrow-right.png') }}" alt="Arrow" class="h-5 w-auto">
                             </div>
                         </a>
                     </div>
