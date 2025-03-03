@@ -56,6 +56,8 @@ class DireksiBumdesResource extends Resource
 
                         Textarea::make('deskripsi')
                             ->label('Deskripsi')
+                            ->rows(10)
+                            ->cols(100)
                             ->required(),
                     ])
                     ->columns(1),
@@ -94,7 +96,7 @@ class DireksiBumdesResource extends Resource
                 ImageColumn::make('gambar')
                     ->disk('public')
                     ->label('Foto')
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar))
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar))
                     ->size(50),
 
                 TextColumn::make('judul')
@@ -108,7 +110,7 @@ class DireksiBumdesResource extends Resource
                     ->label('Deskripsi'),
                 TextColumn::make('anggota_count')
                     ->label('Jumlah Anggota')
-                    ->getStateUsing(fn ($record) => is_array($record->anggota) ? count($record->anggota) : 0),
+                    ->getStateUsing(fn($record) => is_array($record->anggota) ? count($record->anggota) : 0),
                 TextColumn::make('created_at')
                     ->dateTime('d M Y H:i')
                     ->label('Dibuat'),

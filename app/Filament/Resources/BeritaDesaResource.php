@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Textarea;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -19,7 +20,7 @@ class BeritaDesaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Publikasi';
-    
+
     public static function getSlug(): string
     {
         return '/publikasi/berita-desa';
@@ -43,24 +44,26 @@ class BeritaDesaResource extends Resource
                     ->label('Judul')
                     ->required()
                     ->maxLength(255),
-                
+
                 Forms\Components\FileUpload::make('gambar')
                     ->label('Gambar')
                     ->image()
                     ->directory('berita_desa')
                     ->nullable(),
-                
+
                 Forms\Components\DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required(),
-                
+
                 Forms\Components\TextInput::make('penulis')
                     ->label('Penulis')
                     ->required()
                     ->maxLength(100),
-                
-                Forms\Components\Textarea::make('deskripsi')
+
+                Textarea::make('deskripsi')
                     ->label('Deskripsi')
+                    ->rows(10)
+                    ->cols(100)
                     ->required(),
             ]);
     }
@@ -71,22 +74,23 @@ class BeritaDesaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->label('Judul')
+                    ->limit(50)
                     ->searchable()
                     ->sortable(),
-                
+
                 Tables\Columns\ImageColumn::make('gambar')
                     ->label('Gambar')
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
-                
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
+
                 Tables\Columns\TextColumn::make('tanggal')
                     ->label('Tanggal')
-                    ->formatStateUsing(fn ($state) => \Carbon\Carbon::parse($state)->locale('id')->translatedFormat('l, d F Y'))
+                    ->formatStateUsing(fn($state) => \Carbon\Carbon::parse($state)->locale('id')->translatedFormat('l, d F Y'))
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('penulis')
                     ->label('Penulis')
                     ->searchable(),
-                
+
                 Tables\Columns\TextColumn::make('deskripsi')
                     ->label('Deskripsi')
                     ->limit(50),
@@ -97,9 +101,9 @@ class BeritaDesaResource extends Resource
                         Forms\Components\DatePicker::make('from'),
                         Forms\Components\DatePicker::make('to'),
                     ])
-                    ->query(fn ($query, $data) => $query
-                        ->when($data['from'], fn ($query) => $query->where('tanggal', '>=', $data['from']))
-                        ->when($data['to'], fn ($query) => $query->where('tanggal', '<=', $data['to']))),
+                    ->query(fn($query, $data) => $query
+                        ->when($data['from'], fn($query) => $query->where('tanggal', '>=', $data['from']))
+                        ->when($data['to'], fn($query) => $query->where('tanggal', '<=', $data['to']))),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
 
 class GeografisDesaResource extends Resource
 {
@@ -38,59 +41,61 @@ class GeografisDesaResource extends Resource
     }
 
     public static function form(Form $form): Forms\Form
-{
-    return $form
-        ->schema([
-            Forms\Components\Section::make('Informasi Sambutan')
-                ->schema([
-                    Forms\Components\TextInput::make('judul')
-                        ->label('Judul')
-                        ->required(),
-                    
-                    Forms\Components\TextArea::make('deskripsi')
-                        ->label('Deskripsi')
-                        ->required(),
-                    
-                    Forms\Components\FileUpload::make('gambar')
-                        ->label('Gambar')
-                        ->image()
-                        ->directory('sambutan') //
-                        ->maxSize(2048) // Maksimal 2MB
-                        ->required(),
-                ])
-                ->columns(1), // Menyusun semua elemen dalam satu kolom
-        ]);
-}
+    {
+        return $form
+            ->schema([
+                Forms\Components\Section::make('Informasi Sambutan')
+                    ->schema([
+                        TextInput::make('judul')
+                            ->label('Judul')
+                            ->required(),
 
-public static function table(Table $table): Table
-{
-    return $table
-    ->columns([
-        ImageColumn::make('gambar')
-            ->disk('public') // Pastikan menggunakan disk 'public'
-            ->label('Gambar')
-            ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
-        TextColumn::make('judul')
-            ->searchable(),
-        TextColumn::make('deskripsi')
-            ->limit(50),
-        TextColumn::make('created_at')
-            ->dateTime('d M Y H:i')
-            ->label('Dibuat'),
-    ])
-        ->filters([
-            //
-        ])
-        ->actions([
-            Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(),
-        ])
-        ->bulkActions([
-            Tables\Actions\BulkActionGroup::make([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]),
-        ]);
-}
+                        Textarea::make('deskripsi')
+                            ->label('Deskripsi')
+                            ->rows(10)
+                            ->cols(100)
+                            ->required(),
+
+                        FileUpload::make('gambar')
+                            ->label('Gambar')
+                            ->image()
+                            ->directory('sambutan') //
+                            ->maxSize(2048) // Maksimal 2MB
+                            ->required(),
+                    ])
+                    ->columns(1), // Menyusun semua elemen dalam satu kolom
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                ImageColumn::make('gambar')
+                    ->disk('public') // Pastikan menggunakan disk 'public'
+                    ->label('Gambar')
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
+                TextColumn::make('judul')
+                    ->searchable(),
+                TextColumn::make('deskripsi')
+                    ->limit(50),
+                TextColumn::make('created_at')
+                    ->dateTime('d M Y H:i')
+                    ->label('Dibuat'),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
 
     public static function getRelations(): array
     {

@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -47,8 +48,10 @@ class BidangPertanianResource extends Resource
                             ->label('Judul')
                             ->required(),
 
-                        Forms\Components\TextInput::make('deskripsi')
+                        Textarea::make('deskripsi')
                             ->label('Deskripsi')
+                            ->rows(10)
+                            ->cols(100)
                             ->required(),
 
                         Forms\Components\FileUpload::make('gambar')
@@ -68,10 +71,10 @@ class BidangPertanianResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('gambar')
-                ->label('Gambar')
-                ->disk('public')
-                ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar)),
-                
+                    ->label('Gambar')
+                    ->disk('public')
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar)),
+
                 TextColumn::make('judul')
                     ->label('Judul')
                     ->searchable()

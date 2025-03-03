@@ -13,6 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 
 
@@ -38,46 +39,48 @@ class SejarahResource extends Resource
     }
 
     public static function form(Forms\Form $form): Forms\Form
-{
-    return $form
-        ->schema([
-            Forms\Components\Section::make('Informasi Sejarah')
-                ->schema([
-                    Forms\Components\TextInput::make('judul')
-                        ->label('Judul')
-                        ->required(),
-                    
-                    Forms\Components\TextInput::make('deskripsi')
-                        ->label('Deskripsi')
-                        ->required(),
-                    
-                    Forms\Components\FileUpload::make('gambar')
-                        ->label('Gambar')
-                        ->image()
-                        ->directory('sejarah') // Folder di storage/app/public/sejarah
-                        ->maxSize(2048) // Maksimal 2MB
-                        ->required(),
-                ])
-                ->columns(1), // Menyusun semua elemen dalam satu kolom
-        ]);
-}
+    {
+        return $form
+            ->schema([
+                Forms\Components\Section::make('Informasi Sejarah')
+                    ->schema([
+                        TextInput::make('judul')
+                            ->label('Judul')
+                            ->required(),
+
+                        Textarea::make('deskripsi')
+                            ->label('Deskripsi')
+                            ->rows(10)
+                            ->cols(100)
+                            ->required(),
+
+                        FileUpload::make('gambar')
+                            ->label('Gambar')
+                            ->image()
+                            ->directory('sejarah') // Folder di storage/app/public/sejarah
+                            ->maxSize(2048) // Maksimal 2MB
+                            ->required(),
+                    ])
+                    ->columns(1), // Menyusun semua elemen dalam satu kolom
+            ]);
+    }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            ImageColumn::make('gambar')
-                ->disk('public') // Pastikan menggunakan disk 'public'
-                ->label('Gambar')
-                ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
-            TextColumn::make('judul')
-                ->searchable(),
-            TextColumn::make('deskripsi')
-                ->limit(50),
-            TextColumn::make('created_at')
-                ->dateTime('d M Y H:i')
-                ->label('Dibuat'),
-        ])
+            ->columns([
+                ImageColumn::make('gambar')
+                    ->disk('public') // Pastikan menggunakan disk 'public'
+                    ->label('Gambar')
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
+                TextColumn::make('judul')
+                    ->searchable(),
+                TextColumn::make('deskripsi')
+                    ->limit(50),
+                TextColumn::make('created_at')
+                    ->dateTime('d M Y H:i')
+                    ->label('Dibuat'),
+            ])
             ->filters([
                 //
             ])

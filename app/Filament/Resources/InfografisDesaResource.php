@@ -73,21 +73,23 @@ class InfografisDesaResource extends Resource
             ->columns([
                 ImageColumn::make('Gambar')
                     ->label('Gambar')
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->Gambar)),
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->Gambar)),
 
                 TextColumn::make('Judul')
                     ->label('Judul Infografis')
                     ->sortable()
                     ->searchable(),
 
-                TextColumn::make('Deskripsi')
+                Textarea::make('deskripsi')
                     ->label('Deskripsi')
-                    ->limit(50),
+                    ->rows(10)
+                    ->cols(100)
+                    ->required(),
 
                 TextColumn::make('file_path')
                     ->label('Dokumen')
-                    ->formatStateUsing(fn ($state) => $state 
-                        ? '<a href="'.asset('storage/'.$state).'" target="_blank" class="text-blue-500 underline">Download</a>' 
+                    ->formatStateUsing(fn($state) => $state
+                        ? '<a href="' . asset('storage/' . $state) . '" target="_blank" class="text-blue-500 underline">Download</a>'
                         : 'Tidak Ada')
                     ->html(),
 

@@ -47,7 +47,7 @@ class VideoKegiatanResource extends Resource
                 Forms\Components\FileUpload::make('gambar')
                     ->label('Gambar')
                     ->image()
-                    ->directory('ppid_desa')
+                    ->directory('video_kegiatan')
                     ->nullable(),
                 
                 Forms\Components\DatePicker::make('tanggal')
@@ -59,7 +59,7 @@ class VideoKegiatanResource extends Resource
                     ->required()
                     ->maxLength(100),
                 
-                Forms\Components\Textarea::make('url')
+                Forms\Components\TextInput::make('url')
                     ->label('Url Video')
                     ->required(),
             ]);

@@ -56,6 +56,8 @@ class StrukturOrganisasiResource extends Resource
 
                         Textarea::make('deskripsi')
                             ->label('Deskripsi')
+                            ->rows(10)
+                            ->cols(100)
                             ->required(),
                     ])
                     ->columns(1),
@@ -85,7 +87,7 @@ class StrukturOrganisasiResource extends Resource
                 ImageColumn::make('gambar')
                     ->disk('public')
                     ->label('Foto')
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar))
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar))
                     ->size(50),
 
                 TextColumn::make('judul')
@@ -97,10 +99,10 @@ class StrukturOrganisasiResource extends Resource
                     ->searchable()
                     ->limit(50)
                     ->label('Deskripsi'),
-                    
+
                 TextColumn::make('anggota_count')
                     ->label('Jumlah Anggota')
-                    ->getStateUsing(fn ($record) => is_array($record->anggota) ? count($record->anggota) : 0)
+                    ->getStateUsing(fn($record) => is_array($record->anggota) ? count($record->anggota) : 0)
                     ->sortable(),
 
                 TextColumn::make('created_at')

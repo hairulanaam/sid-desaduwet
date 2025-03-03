@@ -7,6 +7,7 @@ use App\Models\PpidDesa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -56,8 +57,10 @@ class PpidDesaResource extends Resource
                     ->required()
                     ->maxLength(100),
                 
-                Forms\Components\Textarea::make('deskripsi')
+                Textarea::make('deskripsi')
                     ->label('Deskripsi')
+                    ->rows(10)
+                    ->cols(100)
                     ->required(),
             ]);
     }
@@ -68,6 +71,7 @@ class PpidDesaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->label('Judul')
+                    ->limit(50)
                     ->searchable()
                     ->sortable(),
                 

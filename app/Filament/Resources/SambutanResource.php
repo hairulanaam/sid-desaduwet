@@ -13,6 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 
 
@@ -43,15 +44,17 @@ class SambutanResource extends Resource
         ->schema([
             Forms\Components\Section::make('Informasi Sambutan')
                 ->schema([
-                    Forms\Components\TextInput::make('judul')
+                    TextInput::make('judul')
                         ->label('Judul')
                         ->required(),
                     
-                    Forms\Components\TextInput::make('deskripsi')
+                    Textarea::make('deskripsi')
                         ->label('Deskripsi')
+                        ->rows(10)
+                        ->cols(100)
                         ->required(),
                     
-                    Forms\Components\FileUpload::make('gambar')
+                    FileUpload::make('gambar')
                         ->label('Gambar')
                         ->image()
                         ->directory('sambutan') //

@@ -39,46 +39,48 @@ class PerangkatDesaResource extends Resource
     }
 
     public static function form(Forms\Form $form): Forms\Form
-{
-    return $form
-        ->schema([
-            Forms\Components\Section::make('Informasi Perangkat Desa')
-                ->schema([
-                    Forms\Components\TextInput::make('nama')
-                        ->label('nama')
-                        ->required(),
-                    
-                    Forms\Components\TextInput::make('jabatan')
-                        ->label('jabatan')
-                        ->required(),
-                    
-                    Forms\Components\FileUpload::make('gambar')
-                        ->label('Gambar')
-                        ->image()
-                        ->directory('perangkat_desa') // Folder di storage/app/public/sejarah
-                        ->maxSize(2048) // Maksimal 2MB
-                        ->required(),
-                ])
-                ->columns(1), // Menyusun semua elemen dalam satu kolom
-        ]);
-}
+    {
+        return $form
+            ->schema([
+                Forms\Components\Section::make('Informasi Perangkat Desa')
+                    ->schema([
+                        TextInput::make('nama')
+                            ->label('Nama')
+                            ->required(),
+
+                        TextInput::make('jabatan')
+                            ->label('Jabatan')
+                            ->required(),
+
+                        FileUpload::make('gambar')
+                            ->label('Gambar')
+                            ->image()
+                            ->directory('perangkat_desa') // Folder di storage/app/public/sejarah
+                            ->maxSize(2048) // Maksimal 2MB
+                            ->required(),
+                    ])
+                    ->columns(1), // Menyusun semua elemen dalam satu kolom
+            ]);
+    }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            ImageColumn::make('gambar')
-                ->disk('public') // Pastikan menggunakan disk 'public'
-                ->label('Gambar')
-                ->getStateUsing(fn ($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
-            TextColumn::make('nama')
-                ->searchable(),
-            TextColumn::make('jabatan')
-                ->limit(50),
-            TextColumn::make('created_at')
-                ->dateTime('d M Y H:i')
-                ->label('Dibuat'),
-        ])
+            ->columns([
+                ImageColumn::make('gambar')
+                    ->disk('public') // Pastikan menggunakan disk 'public'
+                    ->label('Gambar')
+                    ->getStateUsing(fn($record) => asset('storage/' . $record->gambar)), // Ambil URL dengan asset()
+                TextColumn::make('nama')
+                    ->label('Nama')
+                    ->searchable(),
+                TextColumn::make('jabatan')
+                    ->label('Jabatan')
+                    ->limit(50),
+                TextColumn::make('created_at')
+                    ->dateTime('d M Y H:i')
+                    ->label('Dibuat'),
+            ])
             ->filters([
                 //
             ])

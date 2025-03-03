@@ -42,12 +42,16 @@ class VisiMisiResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informasi Visi & Misi')
                     ->schema([
-                        TextInput::make('visi')
+                        Textarea::make('visi')
                             ->label('Visi')
+                            ->rows(10)
+                            ->cols(100)
                             ->required(),
 
                         Textarea::make('misi')
                             ->label('Misi')
+                            ->rows(10)
+                            ->cols(100)
                             ->required(),
 
                         FileUpload::make('file_path')
