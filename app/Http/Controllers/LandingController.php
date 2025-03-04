@@ -330,6 +330,13 @@ class LandingController extends Controller
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
         return view('pages.strukturorganisasi', compact('agendas','beritaDesa'));
     }
+    public function informasiumum ()
+    {
+        $beritaDesa = BeritaDesa::latest()->take(3)->get();
+        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        return view('pages.informasiumum', compact('agendas','beritaDesa'));
+    }
+    
     public function agenda()
     {
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();

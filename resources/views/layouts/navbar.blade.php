@@ -74,6 +74,7 @@
                     <li><a href="/profil/perangkat-desa" class="text-sm">Sumber Daya Manusia</a></li>
                     <li><a href="/profil/peta-desa" class="text-sm">Peta Desa</a></li>
                     <li><a href="/profil/lembaga-desa" class="text-sm">Lembaga Pemerintahan Desa</a></li>
+                    <li><a href="/profil/informasi-umum" class="text-sm">Informasi Umum</a></li>
                 </ul>
             </li>
 
@@ -223,7 +224,8 @@
                     class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                     <li><a href="/profil/sejarah" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sejarah</a>
                     </li>
-                    <li><a href="/profil/geografis-desa" class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Geografis</a>
+                    <li><a href="/profil/geografis-desa"
+                            class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Geografis</a>
                     </li>
                     <li><a href="/profil/katasambutan"
                             class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Sambutan</a></li>
@@ -237,6 +239,8 @@
                             Desa</a></li>
                     <li><a href="/profil/lembaga-desa"
                             class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Lembaga Pemerintahan Desa</a></li>
+                    <li><a href="/profil/informasi-umum"
+                            class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Informasi Umum</a></li>
                 </ul>
             </li>
 
