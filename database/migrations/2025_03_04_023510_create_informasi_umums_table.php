@@ -12,13 +12,13 @@ return new class extends Migration {
             $table->string('judul');
             $table->text('deskripsi');
             $table->string('gambar')->nullable();
-            $table->json('tabel')->nullable(); // Menyimpan data tabel dalam JSON
+            $table->json('tabel')->nullable()->default(json_encode([])); // Memastikan JSON tidak NULL
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('informasi_umum');
+        Schema::dropIfExists('informasi_umum'); // Menggunakan table() opsional
     }
 };

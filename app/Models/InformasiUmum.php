@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class InformasiUmum extends Model
 {
+    use HasFactory;
+
     protected $table = 'informasi_umum';
 
     protected $fillable = ['judul', 'deskripsi', 'gambar', 'tabel'];
@@ -15,14 +18,21 @@ class InformasiUmum extends Model
         'tabel' => 'array', // Konversi otomatis ke array saat diambil dari database
     ];
 
-    // Method untuk menghapus gambar lama saat diperbarui
+
     public function updateImage($file)
     {
-        if ($this->gambar) {
+        if (!$file || !$file->isValid()) {
+            return; // Hindari error jika file tidak valid
+        }
+
+        // Hapus gambar lama jika ada
+        if (!empty($this->gambar) && Storage::disk('public')->exists($this->gambar)) {
             Storage::disk('public')->delete($this->gambar);
         }
 
+        // Simpan gambar baru
         $path = $file->store('informasi_umum', 'public');
-        $this->update(['gambar' => $path]);
+        $this->gambar = $path;
+        $this->save(); // Simpan perubahan ke database
     }
 }

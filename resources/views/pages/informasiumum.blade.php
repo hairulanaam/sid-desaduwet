@@ -63,61 +63,35 @@
                                 </p>
                             @endforeach
 
-                            <!-- Tabel -->
-                            @if (!empty($item->tabel) && is_array($item->tabel))
-                                <div class="overflow-x-auto mt-4">
-                                    <table class="min-w-full bg-white border border-gray-200">
-                                        <thead class="bg-gray-200">
-                                            <tr>
-                                                @if (!empty($item->tabel['header']) && is_array($item->tabel['header']))
-                                                    @foreach ($item->tabel['header'] as $th)
-                                                        <th class="px-4 py-2 border">{{ is_string($th) ? $th : '-' }}</th>
-                                                    @endforeach
-                                                @else
-                                                    <th class="px-4 py-2 border text-red-500">Header tidak tersedia</th>
-                                                @endif
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (!empty($item->tabel['rows']) && is_array($item->tabel['rows']))
-                                                @foreach ($item->tabel['rows'] as $row)
-                                                    @if (is_array($row))
-                                                        <tr>
-                                                            @foreach ($row as $td)
-                                                                <td class="px-4 py-2 border">
-                                                                    @if (is_array($td))
-                                                                        @foreach ($td as $sub_td)
-                                                                            {{ is_string($sub_td) ? $sub_td : json_encode($sub_td) }}
-                                                                            @if (!$loop->last)
-                                                                                ,
-                                                                            @endif
-                                                                        @endforeach
-                                                                    @else
-                                                                        {{ is_string($td) ? $td : json_encode($td) }}
-                                                                    @endif
-                                                                </td>
-                                                            @endforeach
-                                                        </tr>
-                                                    @else
-                                                        <tr>
-                                                            <td class="px-4 py-2 border text-red-500">Format baris salah
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            @else
+                            @if (!empty($item->tabel['header']) && is_array($item->tabel['header']) && !empty($item->tabel['rows']) && is_array($item->tabel['rows']))
+                            <!-- Tabel hanya ditampilkan jika ada data -->
+                            <div class="overflow-x-auto mt-4">
+                                <table class="min-w-full bg-white border border-gray-200">
+                                    <thead class="bg-green-500 text-white">
+                                        <tr>
+                                            @foreach ($item->tabel['header'] as $header)
+                                                <th class="px-4 py-2 border">{{ $header['nama_kolom'] }}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($item->tabel['rows'] as $index => $row)
+                                            @php
+                                                $data = is_string($row['data']) ? json_decode($row['data'], true) : $row['data'];
+                                            @endphp
+                                            @if (is_array($data) && count($data) > 0)
                                                 <tr>
-                                                    <td class="px-4 py-2 border text-red-500">Data baris tidak tersedia</td>
+                                                    @foreach ($data as $column)
+                                                        <td class="border px-4 py-2">{{ $column['value'] ?? '' }}</td>
+                                                    @endforeach
                                                 </tr>
                                             @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @else
-                                <p class="text-red-500">Tabel tidak tersedia atau format salah.</p>
-                            @endif
-
-
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                        
                             <!-- Pemisah antar item -->
                             <div class="w-full h-1 bg-gray-300 rounded-md my-6"></div>
                         </div>
