@@ -64,7 +64,7 @@
                             @endforeach
 
                             <!-- Tabel -->
-                            {{-- @if (!empty($item->tabel) && is_array($item->tabel))
+                            @if (!empty($item->tabel) && is_array($item->tabel))
                                 <div class="overflow-x-auto mt-4">
                                     <table class="min-w-full bg-white border border-gray-200">
                                         <thead class="bg-gray-200">
@@ -115,10 +115,7 @@
                                 </div>
                             @else
                                 <p class="text-red-500">Tabel tidak tersedia atau format salah.</p>
-                            @endif --}}
-
-
-
+                            @endif
 
 
                             <!-- Pemisah antar item -->

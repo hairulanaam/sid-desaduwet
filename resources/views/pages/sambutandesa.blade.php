@@ -58,7 +58,7 @@
                         warahmatullahi
                         wabarakatuh.</h1>
                     <p class="mt-10 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Kepala Desa Duwet</p>
-                    <p class="mt-8 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">Nama Kepala Desa, S.Pd.I</p>
+                    <p class="mt-8 text-gray-600 text-sm sm:text-base md:text-lg font-semibold">ADI CHANDRA KARISMA</p>
                     <!-- Container utama -->
                     <div class="max-w-screen-lg w-full mx-auto bg-white p-4 shadow-lg rounded-md mt-20 border border-gray-200 text-sm">
 

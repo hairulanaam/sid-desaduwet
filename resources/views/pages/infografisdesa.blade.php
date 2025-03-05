@@ -63,7 +63,7 @@
                                 <p class="text-gray-700 font-semibold text-xs sm:text-sm md:text-base">Tags:</p>
                                 <span
                                     class="px-2 py-1 bg-gray-100 text-gray-700 font-semibold rounded-md border border-gray-300 shadow-sm text-xs sm:text-sm md:text-base">
-                                    berita desa
+                                    infografis desa
                                 </span>
                             </div>
 

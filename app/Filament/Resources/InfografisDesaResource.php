@@ -43,19 +43,19 @@ class InfografisDesaResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('Gambar')
-                    ->label('gambar')
+                    ->label('Gambar')
                     ->directory('infografis_desa')
                     ->image()
                     ->maxSize(2048) // Max 2MB
                     ->required(),
 
                 TextInput::make('Judul')
-                    ->label('judul')
+                    ->label('Judul')
                     ->maxLength(255)
                     ->required(),
 
                 Textarea::make('Deskripsi')
-                    ->label('deskripsi')
+                    ->label('Deskripsi')
                     ->rows(4)
                     ->required(),
                 FileUpload::make('file_path')
@@ -80,11 +80,12 @@ class InfografisDesaResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Textarea::make('deskripsi')
+                TextColumn::make('Deskripsi')
                     ->label('Deskripsi')
-                    ->rows(10)
-                    ->cols(100)
-                    ->required(),
+                    ->limit(50) // Menampilkan hanya 50 karakter
+                    ->tooltip(fn($record) => $record->deskripsi) // Menampilkan teks lengkap saat di-hover
+                    ->sortable()
+                    ->searchable(),
 
                 TextColumn::make('file_path')
                     ->label('Dokumen')

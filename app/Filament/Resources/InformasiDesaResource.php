@@ -71,7 +71,7 @@ class InformasiDesaResource extends Resource
                 Forms\Components\TextInput::make('alamat_desa')
                     ->required()
                     ->label('Alamat Lengkap')
-                    ->maxLength(100),
+                    ->maxLength(300),
                 Forms\Components\TextInput::make('telepon_desa')
                     ->required()
                     ->label('Nomer Telepon')
