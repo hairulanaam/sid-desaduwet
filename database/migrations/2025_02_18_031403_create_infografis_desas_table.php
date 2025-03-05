@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Gambar')->nullable();
             $table->string('Judul');
             $table->text('Deskripsi'); 
-            $table->string('file_path'); // Kolom untuk menyimpan path file yang diupload
+            $table->string('file_path')->nullable(); // Kolom untuk menyimpan path file yang diupload
             $table->timestamps();
         });
     }

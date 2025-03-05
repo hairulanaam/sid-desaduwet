@@ -62,11 +62,8 @@ class PekerjaanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_pekerjaan')->label('Nama Pekerjaan')->sortable()->searchable(),
-                TextColumn::make('laki_laki')->label('Laki-Laki')->sortable(),
-                TextColumn::make('perempuan')->label('Perempuan')->sortable(),
                 TextColumn::make('jumlah_penduduk')->label('Jumlah Penduduk')
                     ->sortable()
-                    ->formatStateUsing(fn($record) => $record->laki_laki + $record->perempuan),
             ])
             ->filters([
                 //

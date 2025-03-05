@@ -62,8 +62,7 @@ class InfografisDesaResource extends Resource
                     ->label('Dokumen Infografis')
                     ->directory('infografis_desa')
                     ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
-                    ->maxSize(5120)
-                    ->required(),
+                    ->maxSize(5120),
             ]);
     }
 
