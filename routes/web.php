@@ -89,6 +89,8 @@ Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-usaha', [LandingControl
 
 Route::get('login', [LandingController::class, 'login'])->name('login');
 
+Route::get('dashboard', [LandingController::class, 'dashboard'])->name('dashboard');
+
 ?>
 
 

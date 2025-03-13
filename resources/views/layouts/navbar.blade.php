@@ -23,7 +23,7 @@
     }
 </style>
 
-<nav class="fixed bg-opacity-40 top-0 left-0 right-0 flex items-center py-3 px-4 md:px-20 bg-black z-30">
+<nav class="fixed bg-opacity-40 top-0 left-0 right-0 flex items-center py-3 px-4 md:px-20 bg-black z-40">
 
     {{-- Logo --}}
     <div class="flex items-center gap-x-2 lg:hidden xl:block">
