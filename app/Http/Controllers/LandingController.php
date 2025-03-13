@@ -474,6 +474,51 @@ class LandingController extends Controller
         $agendas = Agenda::orderBy('tanggal', 'asc')->get();
         return view('pages.infografisdesa', compact('infografis','agendas','beritaDesa'));
     }
+
+    public function pelayananmandiri()
+    {
+        return view('pages.pelayananmandiri');
+    }
+    public function suratpengantarskck()
+    {
+        return view('pages.suratpengantarskck');
+    }
+
+    public function suratpengantarsktm()
+    {
+        return view('pages.suratpengantarsktm');
+    }
+
+    public function suratpengantarpindahkeluarwni()
+    {
+        return view('pages.suratpengantarpindahkeluarwni');
+    }
+
+    public function suratpengantarijinkeramaian()
+    {
+        return view('pages.suratpengantarijinkeramaian');
+    }
+
+    public function suratketerangandomisililembaga()
+    {
+        return view('pages.suratketerangandomisililembaga');
+    }
+
+    public function suratketeranganbepergian()
+    {
+        return view('pages.suratketeranganbepergian');
+    }
+
+    public function suratketeranganusaha()
+    {
+        return view('pages.suratketeranganusaha');
+    }
+
+    public function login()
+    {
+        return view('pages.login');
+    }
+    
 }
 
 

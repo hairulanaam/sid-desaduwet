@@ -32,7 +32,7 @@
 
     {{-- Mobile Navigation --}}
     <div class="ml-auto flex lg:hidden">
-        <button id="burgerMenu" class="text-[#3986A3] focus:outline-none">
+        <button id="burgerMenu" class="text-[#35b242] focus:outline-none">
             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <line x1="4" y1="6" x2="20" y2="6" stroke-width="2"
@@ -197,10 +197,27 @@
                     </li>
                 </ul>
             </li>
+            <li class="relative">
+                <div class="flex items-center gap-x-1 cursor-pointer" onclick="toggleSubmenu('pelayananSubmenu')">
+                    <a class="text-lg">Pelayanan</a>
+                    <svg id="pelayananArrow" class="w-4 h-4 text-white transform transition-transform duration-200"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg>
+                </div>
+                <ul id="pelayananSubmenu" class="mt-2 space-y-2 pl-4 hidden submenu">
+                    <li><a href="/pelayanan/pelayanan-mandiri" class="text-sm">Pelayanan Mandiri</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/login" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300 inline-block">Login</a>
+            </li>
         </ul>
     </div>
 
-    {{-- Navigation --}}
+    {{-- Navigation Desktop --}}
     <div id="navLinks" class="hidden lg:flex ml-auto items-center">
         <ul class="flex gap-x-4 md:gap-x-9 items-center p-2 text-sm md:text-[15px] font-medium">
             <li>
@@ -416,6 +433,31 @@
                             class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Infografis APBDes Desa Duwet</a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="relative group cursor-pointer">
+                <div class="flex items-center gap-x-1">
+                    <a class="text-white rounded focus:outline-none">
+                        Pelayanan
+                    </a>
+                    <svg class="w-3 h-3 md:w-4 md:h-4 text-white transform transition-transform duration-200 group-hover:rotate-180"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg>
+
+                </div>
+
+                <ul
+                    class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <li><a href="/pelayanan/pelayanan-mandiri"
+                            class="block px-4 py-2 text-gray-700 hover:bg-[#35b242]">Pelayanan Mandiri</a>
+                    </li>
+                </ul>
+
+                <li>
+                    <a href="/login" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300">Login</a>
+                </li>
             </li>
         </ul>
     </div>

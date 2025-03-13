@@ -77,6 +77,18 @@ Route::get('bumdes/direksi-bumdes', [LandingController::class, 'direksibumdes'])
 Route::get('bumdes/jenis-usaha', [LandingController::class, 'jenisusaha'])->name('jenisusaha');
 
 Route::get('apbdes/infografis-desa', [LandingController::class, 'infografisdesa'])->name('infografisdesa');
+
+Route::get('pelayanan/pelayanan-mandiri', [LandingController::class, 'pelayananmandiri'])->name('pelayananmandiri');
+Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-legalisasi-skck', [LandingController::class, 'suratpengantarskck'])->name('suratpengantarskck');
+Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-tidak-mampu', [LandingController::class, 'suratpengantarsktm'])->name('suratpengantarsktm');
+Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-pindah-keluar-wni', [LandingController::class, 'suratpengantarpindahkeluarwni'])->name('suratpengantarpindahkeluarwni');
+Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-ijin-keramaian', [LandingController::class, 'suratpengantarijinkeramaian'])->name('suratpengantarijinkeramaian');
+Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-domisili-lembaga', [LandingController::class, 'suratketerangandomisililembaga'])->name('suratketerangandomisililembaga');
+Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-bepergian', [LandingController::class, 'suratketeranganbepergian'])->name('suratketeranganbepergian');
+Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-usaha', [LandingController::class, 'suratketeranganusaha'])->name('suratketeranganusaha');
+
+Route::get('login', [LandingController::class, 'login'])->name('login');
+
 ?>
 
 
