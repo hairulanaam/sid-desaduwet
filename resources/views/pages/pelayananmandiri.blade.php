@@ -38,7 +38,7 @@
         </a>
 
         <!-- Surat Keterangan Tidak Mampu -->
-        <a href="pelayanan/pelayanan-mandiri/surat-keterangan-tidak-mampu" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratpengantarsktm') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,7 +51,7 @@
         </a>
 
         <!-- Surat Pengantar Pindah Keluar WNI -->
-        <a href="pelayanan/pelayanan-mandiri/surat-pengantar-pindah-keluar-wni" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratpengantarpindahkeluarwni') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +64,7 @@
         </a>
 
         <!-- Surat Pengantar Ijin Keramaian -->
-        <a href="pelayanan/pelayanan-mandiri/surat-pengantar-ijin-keramaian" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratpengantarijinkeramaian') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,7 +77,7 @@
         </a>
 
         <!-- Surat Keterangan Domisili Lembaga -->
-        <a href="pelayanan/pelayanan-mandiri/surat-keterangan-domisili-lembaga" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratketerangandomisililembaga') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,7 +90,7 @@
         </a>
 
         <!-- Surat Keterangan Bepergian -->
-        <a href="pelayanan/pelayanan-mandiri/surat-keterangan-bepergian" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratketeranganbepergian') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,7 +104,7 @@
         </a>
 
         <!-- Surat Keterangan Usaha -->
-        <a href="pelayanan/pelayanan-mandiri/surat-keterangan-usaha" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
+        <a href="{{ route('suratketeranganusaha') }}" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden group">
             <div class="p-6 flex flex-col items-center justify-between h-full">
                 <div class="w-16 h-16 md:w-20 md:h-20 bg-[#2dba48] text-white rounded-full flex items-center justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
