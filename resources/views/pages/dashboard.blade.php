@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+{{-- @extends('layouts.app', [
     'title' => 'Dashboard Desa Duwet',
     'active' => 'dashboard',
     'page' => 'Dashboard',
@@ -259,4 +259,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

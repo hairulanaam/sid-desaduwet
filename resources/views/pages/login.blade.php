@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+{{-- @extends('layouts.app', [
     'title' => 'Login Desa Duwet',
     'active' => 'login',
     'page' => 'login',
@@ -91,4 +91,4 @@
         }
     }
 </script>
-@endsection
+@endsection --}}

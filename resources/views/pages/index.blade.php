@@ -8,10 +8,10 @@
 <section class="relative bg-cover w-full h-screen bg-hero flex">
     <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
     
-    <div class="justify-center items-center text-center mx-auto text-white flex z-10 flex-col">
-        <p class="sm:text-5xl text-3xl font-bold">Selamat Datang</p>
-        <p class="sm:text-5xl text-3xl font-bold mt-3">Website Desa <span class="py-0 px-1 bg-[#2dba48] sm:rounded-lg rounded-md sm:text-[44px] text-3xl">{{ $informasidesas->nama_desa }}</span></p>
-        <p class="sm:text-[16px] text-[15px] mt-1">Sumber informasi terbaru tentang pemerintahan di Desa <span>{{ $informasidesas->nama_desa }}</span></p>
+    <div class="justify-center items-center text-center mx-auto text-white flex z-10 flex-col px-4">
+        <p class="text-3xl sm:text-4xl md:text-5xl font-bold">Selamat Datang</p>
+        <p class="text-3xl sm:text-4xl md:text-5xl font-bold mt-3">Website Desa <span class="py-0 px-1 bg-[#2dba48] rounded-md sm:rounded-lg text-3xl sm:text-[44px]">{{ $informasidesas->nama_desa }}</span></p>
+        <p class="text-[15px] sm:text-[16px] mt-1">Sumber informasi terbaru tentang pemerintahan di Desa <span>{{ $informasidesas->nama_desa }}</span></p>
 
         <div class="flex flex-wrap justify-center items-center gap-3 mt-6">
             @foreach ($layanans as $layanan)
@@ -22,14 +22,14 @@
                 'Berita' => route('beritadesa'),
                 'E-Doc' => route('unduhan'),
                 'Statistik' => route('pekerjaan'),
-                'Layanan' => route('agenda'),
+                'Layanan' => route('pelayananmandiri'),
             ];
             $url = $routes[$layanan['jenis']] ?? '#';
-        @endphp
+            @endphp
             <a href="{{ $url }}" class="group">
-                <div class="flex-col py-2 w-24 rounded-lg bg-white group-hover:bg-transparent shadow-md bg-opacity-90 backdrop-blur-sm items-center justify-center flex">
-                    <img src="{{ asset($layanan['icon']) }}" alt="{{ $layanan['jenis'] }}" class="h-8 w-auto object-contain">
-                    <p class="text-[14px] text-center font-medium text-black group-hover:text-white">{{ $layanan['jenis'] }}</p>
+                <div class="flex-col py-2 w-20 sm:w-24 rounded-lg bg-white group-hover:bg-transparent shadow-md bg-opacity-90 backdrop-blur-sm items-center justify-center flex">
+                    <img src="{{ asset($layanan['icon']) }}" alt="{{ $layanan['jenis'] }}" class="h-6 sm:h-8 w-auto object-contain">
+                    <p class="text-[12px] sm:text-[14px] text-center font-medium text-black group-hover:text-white">{{ $layanan['jenis'] }}</p>
                 </div>
             </a>
             @endforeach

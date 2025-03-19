@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+{{-- @extends('layouts.app', [
     'title' => 'Surat Keterangan SKTM Desa Duwet',
     'active' => 'suratketerangansktm',
     'page' => 'suratketerangansktm',
@@ -63,4 +63,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

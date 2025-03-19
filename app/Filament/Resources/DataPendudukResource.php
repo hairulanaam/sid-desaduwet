@@ -22,6 +22,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\Action;
 use Filament\Notifications\Notification;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class DataPendudukResource extends Resource
 {
@@ -49,6 +50,7 @@ class DataPendudukResource extends Resource
     {
         // Konversi tanggal lahir ke format yang sesuai
         $data['tanggal_lahir'] = Carbon::createFromFormat('d-m-Y', $data['tanggal_lahir'])->format('Y-m-d');
+        
         return $data;
     }
 
@@ -169,9 +171,15 @@ class DataPendudukResource extends Resource
                     ->label('Desa/Kelurahan')
                     ->required()
                     ->maxLength(255),
+
+                // Tambahkan field password
+                TextInput::make('password')
+                    ->label('Password')
+                    ->password()
+                    ->required()
+                    ->maxLength(255)
             ]);
     }
-
 
     public static function table(Table $table): Table
     {

@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        'guard' => env('AUTH_GUARD', 'penduduk'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
@@ -38,7 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', // Untuk admin (model User)
+        ],
+        'penduduk' => [
+            'driver' => 'session',
+            'provider' => 'penduduk', // Untuk user biasa (model DataPenduduk)
         ],
     ],
 
@@ -62,13 +66,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class, // Model untuk admin
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'penduduk' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\DataPenduduk::class, // Model untuk user biasa
+        ],
     ],
 
     /*

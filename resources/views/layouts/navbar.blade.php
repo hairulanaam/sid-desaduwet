@@ -23,7 +23,7 @@
     }
 </style>
 
-<nav class="fixed bg-opacity-40 top-0 left-0 right-0 flex items-center py-3 px-4 md:px-20 bg-black z-40">
+<nav class="fixed bg-opacity-40 top-0 left-0 right-0 flex items-center py-3 px-4 md:px-20 bg-black z-50">
 
     {{-- Logo --}}
     <div class="flex items-center gap-x-2 lg:hidden xl:block">
@@ -211,9 +211,22 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="/login" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300 inline-block">Login</a>
+            @if (Auth::check())
+            <li class="relative">
+                <div class="flex items-center gap-x-2">
+                    <a href="{{ route('dashboard') }}" class="text-lg flex items-center gap-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        {{ Auth::user()->nama_lengkap }}
+                    </a>
+                </div>
             </li>
+            @else
+            <li>
+                <a href="{{ route('login') }}" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300 inline-block">Login</a>
+            </li>
+            @endif
         </ul>
     </div>
 
@@ -455,9 +468,22 @@
                     </li>
                 </ul>
 
-                <li>
-                    <a href="/login" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300">Login</a>
-                </li>
+                @if (Auth::check())
+            <li class="relative group cursor-pointer">
+                <div class="flex items-center gap-x-2">
+                    <a href="{{ route('dashboard') }}" class="text-white rounded focus:outline-none flex items-center gap-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        {{ Auth::user()->nama_lengkap }}
+                    </a>
+                </div>
+            </li>
+            @else
+            <li>
+                <a href="{{ route('login') }}" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300">Login</a>
+            </li>
+            @endif
             </li>
         </ul>
     </div>

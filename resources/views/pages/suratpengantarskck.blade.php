@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+{{-- @extends('layouts.app', [
     'title' => 'Surat Pengantar SKCK Desa Duwet',
     'active' => 'suratpengantarskck',
     'page' => 'suratpengantarskck',
@@ -20,30 +20,36 @@
         <div class="p-6">
             <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Form Pengajuan Surat Pengantar Legalisasi SKCK</h2>
             
-            <form action="" method="POST">
+            @if(session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            <form action="{{ route('suratpengantarskck.submit') }}" method="POST">
                 @csrf
                 
                 <div class="mb-4">
                     <label for="nik" class="block text-gray-700 text-sm font-medium mb-2">NIK</label>
-                    <input type="text" id="nik" name="nik" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Masukkan NIK (16 digit)" maxlength="16" pattern="[0-9]{16}">
+                    <input type="text" id="nik" name="nik" required readonly
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"
+                        value="{{ auth()->user()->nik }}">
                 </div>
                 
                 <div class="mb-4">
                     <label for="nama" class="block text-gray-700 text-sm font-medium mb-2">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Masukkan nama lengkap sesuai KTP">
+                    <input type="text" id="nama" name="nama" required readonly
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"
+                        value="{{ auth()->user()->nama }}">
                 </div>
                 
                 <div class="mb-4">
                     <label for="alamat" class="block text-gray-700 text-sm font-medium mb-2">Alamat</label>
-                    <textarea id="alamat" name="alamat" rows="3" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Masukkan alamat lengkap sesuai KTP"></textarea>
+                    <textarea id="alamat" name="alamat" rows="3" required readonly
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">{{ auth()->user()->alamat }}</textarea>
                 </div>
                 
+                <!-- Jenis surat tetap sama -->
                 <div class="mb-6">
                     <label for="jenis_surat" class="block text-gray-700 text-sm font-medium mb-2">Jenis Surat</label>
                     <input type="text" id="jenis_surat" name="jenis_surat" value="Surat Pengantar Legalisasi SKCK" readonly
@@ -63,4 +69,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

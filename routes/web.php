@@ -1,10 +1,18 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\SuratKeteranganBepergianController;
+use App\Http\Controllers\SuratKeteranganDomisiLembagaController;
+use App\Http\Controllers\SuratKeteranganUsahaController;
+use App\Http\Controllers\SuratPengantarIjinKeramaianController;
+use App\Http\Controllers\SuratPengantarSKCKController;
+use App\Http\Controllers\SuratPengantarSKTMController;
+use App\Http\Controllers\SuratPengantarPindahKeluarWNIController;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
-
 
 Route::get('/statistik/jumlah-penduduk', [LandingController::class, 'jumlahpenduduk'])->name('jumlahpenduduk');
 Route::get('/statistik/pekerjaan', [LandingController::class, 'pekerjaan'])->name('pekerjaan');
@@ -34,7 +42,6 @@ Route::get('/e-doc/peraturan-gubernur/{id}', [LandingController::class, 'showper
 Route::get('/e-doc/unduhan', [LandingController::class, 'unduhan'])->name('unduhan');
 Route::get('/e-doc/unduhan/{id}', [LandingController::class, 'showunduhan'])->name('unduhan.show');
 
-
 Route::get('/profil/perangkat-desa', [LandingController::class, 'perangkatdesa'])->name('perangkatdesa');
 Route::get('/profil/peta-desa', [LandingController::class, 'petadesa'])->name('petadesa');
 Route::get('/profil/lembaga-desa', [LandingController::class, 'lembagadesa'])->name('lembagadesa');
@@ -62,15 +69,6 @@ Route::get('potensi/bidang-perikanan', [LandingController::class, 'bidangperikan
 Route::get('potensi/bidang-industri', [LandingController::class, 'bidangindustri'])->name('bidangindustri');
 Route::get('potensi/bidang-perkebunan', [LandingController::class, 'bidangperkebunan'])->name('bidangperkebunan');
 
-
-Route::get('/profil/perangkat-desa', [LandingController::class, 'perangkatdesa'])->name('perangkatdesa');
-Route::get('/profil/peta-desa', [LandingController::class, 'petadesa'])->name('petadesa');
-Route::get('/profil/lembaga-desa', [LandingController::class, 'lembagadesa'])->name('lembagadesa');
-Route::get('/profil/sejarah', [LandingController::class, 'sejarah'])->name('sejarah');
-Route::get('/profil/visi-misi', [LandingController::class, 'visimisi'])->name('visimisi');
-Route::get('/profil/katasambutan', [LandingController::class, 'sambutan'])->name('sambutan');
-Route::get('/profil/struktur-organisasi', [LandingController::class, 'strukturorganisasi'])->name('strukturorganisasi');
-
 Route::get('bumdes/usp-desa', [LandingController::class, 'uspdesa'])->name('uspdesa');
 Route::get('bumdes/profil-bumdes', [LandingController::class, 'profilbumdes'])->name('profilbumdes');
 Route::get('bumdes/direksi-bumdes', [LandingController::class, 'direksibumdes'])->name('direksibumdes');
@@ -78,23 +76,73 @@ Route::get('bumdes/jenis-usaha', [LandingController::class, 'jenisusaha'])->name
 
 Route::get('apbdes/infografis-desa', [LandingController::class, 'infografisdesa'])->name('infografisdesa');
 
-Route::get('pelayanan/pelayanan-mandiri', [LandingController::class, 'pelayananmandiri'])->name('pelayananmandiri');
-Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-legalisasi-skck', [LandingController::class, 'suratpengantarskck'])->name('suratpengantarskck');
-Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-tidak-mampu', [LandingController::class, 'suratpengantarsktm'])->name('suratpengantarsktm');
-Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-pindah-keluar-wni', [LandingController::class, 'suratpengantarpindahkeluarwni'])->name('suratpengantarpindahkeluarwni');
-Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-ijin-keramaian', [LandingController::class, 'suratpengantarijinkeramaian'])->name('suratpengantarijinkeramaian');
-Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-domisili-lembaga', [LandingController::class, 'suratketerangandomisililembaga'])->name('suratketerangandomisililembaga');
-Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-bepergian', [LandingController::class, 'suratketeranganbepergian'])->name('suratketeranganbepergian');
-Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-usaha', [LandingController::class, 'suratketeranganusaha'])->name('suratketeranganusaha');
-
-Route::get('login', [LandingController::class, 'login'])->name('login');
-
-Route::get('dashboard', [LandingController::class, 'dashboard'])->name('dashboard');
-
-?>
+// Rute untuk pengguna yang belum login (guest)
 
 
+// Rute untuk pengguna yang sudah login (auth)
+Route::middleware('auth')->group(function () {
+    Route::get('pelayanan/pelayanan-mandiri', [LandingController::class, 'pelayananmandiri'])
+        ->name('pelayananmandiri');
+    Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-skck', [SuratPengantarSKCKController::class, 'index'])
+        ->name('suratpengantarskck.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-pengantar-skck/submit', [SuratPengantarSKCKController::class, 'submit'])->name('suratpengantarskck.submit');
+
+    Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-tidak-mampu', [SuratPengantarSKTMController::class, 'index'])
+        ->name('suratpengantarsktm.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-keterangan-tidak-mampu/submit', [SuratPengantarSKTMController::class, 'submit'])
+        ->name('suratpengantarsktm.submit');
+
+    Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-pindah-keluar-wni', [SuratPengantarPindahKeluarWNIController::class, 'index'])
+        ->name('suratpengantarpindahkeluarwni.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-pengantar-pindah-keluar-wni/submit', [SuratPengantarPindahKeluarWNIController::class, 'submit'])
+        ->name('suratpengantarpindahkeluarwni.submit');
 
 
- 
+    Route::get('pelayanan/pelayanan-mandiri/surat-pengantar-ijin-keramaian', [SuratPengantarIjinKeramaianController::class, 'index'])
+        ->name('suratpengantarijinkeramaian.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-pengantar-ijin-keramaian/submit', [SuratPengantarIjinKeramaianController::class, 'submit'])
+        ->name('suratpengantarijinkeramaian.submit');
 
+    Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-domisili-lembaga', [SuratKeteranganDomisiLembagaController::class, 'index'])
+        ->name('suratketerangandomisililembaga.index');
+    Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-domisili-lembaga/submit', [SuratKeteranganDomisiLembagaController::class, 'submit'])
+        ->name('suratketerangandomisililembaga.submit');
+
+
+    Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-bepergian', [SuratKeteranganBepergianController::class, 'index'])
+        ->name('suratketeranganbepergian.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-keterangan-bepergian/submit', [SuratKeteranganBepergianController::class, 'submit'])
+        ->name('suratketeranganbepergian.submit');
+
+
+    Route::get('pelayanan/pelayanan-mandiri/surat-keterangan-usaha', [SuratKeteranganUsahaController::class, 'index'])
+        ->name('suratketeranganusaha.index');
+    Route::post('pelayanan/pelayanan-mandiri/surat-keterangan-usaha/submit', [SuratKeteranganUsahaController::class, 'submit'])
+        ->name('suratketeranganusaha.submit');
+});
+
+Route::get('pelayanan/pelayanan-mandiri', [LandingController::class, 'pelayananmandiri'])
+    ->name('pelayananmandiri');
+
+
+// Route::get('login', [LandingController::class, 'login'])->name('login');
+// di routes/web.php
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth:penduduk'])->name('dashboard');
+
+// Routes/web.php - Tambahkan route untuk dashboard profil
+Route::get('/dashboard/profil', function () {
+    return view('dashboardprofil');
+})->middleware(['auth:penduduk'])->name('dashboardprofil');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
+
+require __DIR__ . '/auth.php';

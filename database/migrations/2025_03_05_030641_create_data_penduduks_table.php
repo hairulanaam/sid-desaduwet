@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +30,8 @@ return new class extends Migration
             $table->string('rw', 3)->nullable();
             $table->string('kecamatan');
             $table->string('desa_kelurahan');
+            $table->string('password'); // Tambahkan kolom password
+            $table->rememberToken();
             $table->timestamps();
         });
     }
