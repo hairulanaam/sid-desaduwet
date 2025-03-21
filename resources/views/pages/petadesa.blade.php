@@ -49,10 +49,19 @@
                     <table class="w-full border border-gray-300 text-sm sm:text-base">
                         <thead>
                             <tr class="bg-[#42c85f] text-white text-center">
-                                <th class="border border-gray-300 px-4 py-2">Puskesmas</th>
                                 <th class="border border-gray-300 px-4 py-2">Masjid</th>
-                                <th class="border border-gray-300 px-4 py-2">SDN</th>
-                                <th class="border border-gray-300 px-4 py-2">Kantor Desa</th>
+                                <th class="border border-gray-300 px-4 py-2">Mushalla</th>
+                                <th class="border border-gray-300 px-4 py-2">Pemakaman</th>
+                                <th class="border border-gray-300 px-4 py-2">PAUD</th>
+                                <th class="border border-gray-300 px-4 py-2">TK</th>
+                                <th class="border border-gray-300 px-4 py-2">SD</th>
+                                <th class="border border-gray-300 px-4 py-2">SMP</th>
+                                <th class="border border-gray-300 px-4 py-2">Pondok Pesantren</th>
+                                <th class="border border-gray-300 px-4 py-2">Lembaga Kursus</th>
+                                <th class="border border-gray-300 px-4 py-2">Lapangan Sepak Bola</th>
+                                <th class="border border-gray-300 px-4 py-2">Poskesdes</th>
+                                <th class="border border-gray-300 px-4 py-2">Posyandu</th>
+                                <th class="border border-gray-300 px-4 py-2">Balai Desa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,17 +81,26 @@
                             }
                             $petaDesa = \App\Models\PetaDesa::all();
                             @endphp
-                            @forelse ($petaDesa as $index => $perangkat)
+                            @forelse ($petaDesa as $index => $data)
                                 <tr>
-                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->nama) }}</td>
-                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->agama) }}</td>
-                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($perangkat->jabatan) }}</td>
-                                    <td class="border border-gray-300 px-4 py-2 text-center">{{ $perangkat->kontak }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->masjid) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->mushalla) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->pemakaman) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->paud) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->tk) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->sd) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->smp) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->pondok_pesantren) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->lembaga_kursus) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->lapangan_sepak_bola) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->poskesdes) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->posyandu) }}</td>
+                                    <td class="uppercase border border-gray-300 px-4 py-2 text-center">{{ formatText($data->balai_desa) }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="border border-gray-300 px-4 py-2 text-center text-gray-600">
-                                        Belum ada data perangkat desa yang tersedia.
+                                    <td colspan="13" class="border border-gray-300 px-4 py-2 text-center text-gray-600">
+                                        Belum ada data peta desa yang tersedia.
                                     </td>
                                 </tr>
                             @endforelse

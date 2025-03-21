@@ -35,36 +35,77 @@ class PetaDesaResource extends Resource
     public static function form(Forms\Form $form): Forms\Form
     {
         return $form->schema([
-            TextInput::make('nama')
-                ->label('Nama')
-                ->required()
+            TextInput::make('masjid')
+                ->label('Masjid')
                 ->maxLength(255),
 
-            TextInput::make('agama')
-                ->label('Agama')
-                ->required()
-                ->maxLength(50),
-
-            TextInput::make('jabatan')
-                ->label('Jabatan')
-                ->required()
+            TextInput::make('mushalla')
+                ->label('Mushalla')
                 ->maxLength(255),
 
-            TextInput::make('kontak')
-                ->label('Kontak')
-                ->required()
-                ->maxLength(20),
+            TextInput::make('pemakaman')
+                ->label('Pemakaman')
+                ->maxLength(255),
+
+            TextInput::make('paud')
+                ->label('PAUD')
+                ->maxLength(255),
+
+            TextInput::make('tk')
+                ->label('TK')
+                ->maxLength(255),
+
+            TextInput::make('sd')
+                ->label('SD')
+                ->maxLength(255),
+
+            TextInput::make('smp')
+                ->label('SMP')
+                ->maxLength(255),
+
+            TextInput::make('pondok_pesantren')
+                ->label('Pondok Pesantren')
+                ->maxLength(255),
+
+            TextInput::make('lembaga_kursus')
+                ->label('Lembaga Kursus')
+                ->maxLength(255),
+
+            TextInput::make('lapangan_sepak_bola')
+                ->label('Lapangan Sepak Bola')
+                ->maxLength(255),
+
+            TextInput::make('poskesdes')
+                ->label('Poskesdes')
+                ->maxLength(255),
+
+            TextInput::make('posyandu')
+                ->label('Posyandu')
+                ->maxLength(255),
+
+            TextInput::make('balai_desa')
+                ->label('Balai Desa')
+                ->maxLength(255),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table->columns([
-            TextColumn::make('id')->label('No')->sortable(),
-            TextColumn::make('nama')->label('Nama')->searchable(),
-            TextColumn::make('agama')->label('Agama'),
-            TextColumn::make('jabatan')->label('Jabatan'),
-            TextColumn::make('kontak')->label('Kontak'),
+                TextColumn::make('id')->label('No')->sortable(),
+                TextColumn::make('masjid')->label('Masjid')->searchable(),
+                TextColumn::make('mushalla')->label('Mushalla')->searchable(),
+                TextColumn::make('pemakaman')->label('Pemakaman')->searchable(),
+                TextColumn::make('paud')->label('PAUD')->searchable(),
+                TextColumn::make('tk')->label('TK')->searchable(),
+                TextColumn::make('sd')->label('SD')->searchable(),
+                TextColumn::make('smp')->label('SMP')->searchable(),
+                TextColumn::make('pondok_pesantren')->label('Pondok Pesantren')->searchable(),
+                TextColumn::make('lembaga_kursus')->label('Lembaga Kursus')->searchable(),
+                TextColumn::make('lapangan_sepak_bola')->label('Lapangan Sepak Bola')->searchable(),
+                TextColumn::make('poskesdes')->label('Poskesdes')->searchable(),
+                TextColumn::make('posyandu')->label('Posyandu')->searchable(),
+                TextColumn::make('balai_desa')->label('Balai Desa')->searchable(),
             ])
             ->filters([
                 //
@@ -79,6 +120,7 @@ class PetaDesaResource extends Resource
                 ]),
             ]);
     }
+    
     public static function getPages(): array
     {
         return [
