@@ -19,40 +19,34 @@
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div class="p-6">
             <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Form Pengajuan Surat Pengantar Legalisasi SKCK</h2>
-            
-            @if(session('error'))
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    {{ session('error') }}
-                </div>
-            @endif
-
             <form action="{{ route('suratpengantarskck.submit') }}" method="POST">
                 @csrf
                 
                 <div class="mb-4">
-                    <label for="nik" class="block text-gray-700 text-sm font-medium mb-2">NIK</label>
-                    <input type="text" id="nik" name="nik" required readonly
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"
-                        value="{{ auth()->user()->nik }}">
+                    <label for="nama_lengkap" class="block text-gray-700 text-sm font-medium mb-2">Nama Lengkap (sesuai KTP)</label>
+                    <input type="text" id="nama_lengkap" name="nama_lengkap" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                        placeholder="Masukkan nama lengkap sesuai KTP">
                 </div>
-                
+
                 <div class="mb-4">
-                    <label for="nama" class="block text-gray-700 text-sm font-medium mb-2">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required readonly
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"
-                        value="{{ auth()->user()->nama_lengkap }}">
+                    <label for="nomor_telp" class="block text-gray-700 text-sm font-medium mb-2">Nomor Telepon</label>
+                    <input type="text" id="nomor_telepon" name="nomor_telepon" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                        placeholder="Masukkan nomor telepon aktif">
                 </div>
                 
                 <div class="mb-4">
                     <label for="alamat" class="block text-gray-700 text-sm font-medium mb-2">Alamat</label>
                     <textarea id="alamat" name="alamat" rows="3" required 
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">{{ auth()->user()->alamat }}</textarea>
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                        placeholder="Masukkan alamat lengkap"></textarea>
                 </div>
                 
-                <!-- Jenis surat tetap sama -->
                 <div class="mb-6">
                     <label for="jenis_surat" class="block text-gray-700 text-sm font-medium mb-2">Jenis Surat</label>
-                    <input type="text" id="jenis_surat" name="jenis_surat" value="Surat Pengantar Legalisasi SKCK" readonly
+                    <input type="text" id="jenis_surat" name="jenis_surat" 
+                        value="Surat Pengantar Legalisasi SKCK" readonly
                         class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">
                 </div>
                 

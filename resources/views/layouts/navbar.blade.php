@@ -211,7 +211,7 @@
                     </li>
                 </ul>
             </li>
-            @if (Auth::check())
+            {{-- @if (Auth::check())
             <li class="relative">
                 <div class="flex items-center gap-x-2">
                     <a href="{{ route('dashboard') }}" class="text-lg flex items-center gap-x-2">
@@ -226,7 +226,7 @@
             <li>
                 <a href="{{ route('login') }}" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300 inline-block">Login</a>
             </li>
-            @endif
+            @endif --}}
         </ul>
     </div>
 
@@ -468,7 +468,7 @@
                     </li>
                 </ul>
 
-                @if (Auth::check())
+                {{-- @if (Auth::check())
             <li class="relative group cursor-pointer">
                 <div class="flex items-center gap-x-2">
                     <a href="{{ route('dashboard') }}" class="text-white rounded focus:outline-none flex items-center gap-x-2">
@@ -484,7 +484,7 @@
                 <a href="{{ route('login') }}" class="bg-[#35b242] text-white py-2 px-6 rounded-full hover:bg-[#2a8e34] transition duration-300">Login</a>
             </li>
             @endif
-            </li>
+            </li> --}}
         </ul>
     </div>
 </nav>

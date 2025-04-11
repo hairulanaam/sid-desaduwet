@@ -12,12 +12,14 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Notifications\Notification;
 
 class RequestSuratResource extends Resource
 {
     protected static ?string $model = RequestSurat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
 
     public static function getSlug(): string
     {
@@ -38,17 +40,8 @@ class RequestSuratResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make() // Mengganti Card dengan Section
+                Forms\Components\Section::make()
                     ->schema([
-                        Forms\Components\TextInput::make('no_surat')
-                            ->label('No. Surat')
-                            ->disabled()
-                            ->dehydrated(false)
-                            ->required(),
-                        Forms\Components\TextInput::make('nik')
-                            ->label('NIK')
-                            ->disabled()
-                            ->dehydrated(false),
                         Forms\Components\TextInput::make('nama')
                             ->label('Nama')
                             ->disabled()
@@ -62,6 +55,10 @@ class RequestSuratResource extends Resource
                             ->label('Jenis Surat')
                             ->disabled()
                             ->dehydrated(false),
+                        Forms\Components\TextInput::make('nomor_telepon')
+                            ->label('Nomor Telepon')
+                            ->disabled()
+                            ->dehydrated(false),
                         Forms\Components\Select::make('status')
                             ->label('Status')
                             ->options([
@@ -70,7 +67,7 @@ class RequestSuratResource extends Resource
                                 'selesai' => 'Selesai',
                                 'diantar' => 'Diantar',
                             ])
-                            ->required(),
+                            ->required()
                     ]),
             ]);
     }
@@ -79,17 +76,10 @@ class RequestSuratResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('no_surat')
-                    ->label('No. Surat')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nik')
-                    ->label('NIK')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('alamat')
                     ->label('Alamat'),
                 Tables\Columns\TextColumn::make('jenis_surat')
@@ -103,10 +93,18 @@ class RequestSuratResource extends Resource
                         'selesai' => 'success',
                         'diantar' => 'info',
                     }),
+                Tables\Columns\TextColumn::make('nomor_telepon')
+                    ->label('Nomor Telepon'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal Permintaan')
-                    ->date('d M Y')
-                    ->sortable(),
+                    ->dateTime('d M Y')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => \Carbon\Carbon::parse($state)->locale('id')->translatedFormat('l, d F Y')),
+
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Terakhir Diupdate')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => \Carbon\Carbon::parse($state)->locale('id')->translatedFormat('l, d F Y  H:i')),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
@@ -120,11 +118,117 @@ class RequestSuratResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+
+                // Aksi untuk mengubah status ke diproses dan kirim notifikasi
+                Tables\Actions\Action::make('prosesSurat')
+                    ->label('Proses Surat')
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('primary')
+                    ->requiresConfirmation()
+                    ->modalHeading('Proses Surat Ini')
+                    ->modalDescription('Apakah Anda yakin ingin memproses surat ini dan mengirim notifikasi ke pemohon?')
+                    ->modalSubmitActionLabel('Ya, Proses')
+                    ->action(function (RequestSurat $record) {
+                        $record->status = 'diproses';
+                        $record->save();
+
+                        self::kirimNotifikasiWA(
+                            $record,
+                            "Yth. {$record->nama},\n\n" .
+                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} sedang dalam proses.\n" .
+                                "Kami akan menginformasikan kembali ketika surat sudah selesai.\n\n" .
+                                "Terima kasih atas kesabaran Anda."
+                        );
+
+                        Notification::make()
+                            ->title('Surat sedang diproses')
+                            ->body('Status diubah menjadi "Diproses" dan notifikasi WA dikirim')
+                            ->success()
+                            ->send();
+                    })
+                    ->visible(fn($record) => $record->status === 'diminta'),
+
+                // Aksi untuk mengirim notifikasi WA saat surat selesai
+                Tables\Actions\Action::make('kirimNotifikasiSelesai')
+                    ->label('Selesai')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->modalHeading('Konfirmasi Penyelesaian Surat')
+                    ->modalDescription('Apakah surat ini sudah selesai diproses dan ingin mengirim notifikasi WA?')
+                    ->modalSubmitActionLabel('Ya, Selesai')
+                    ->action(function (RequestSurat $record) {
+                        $record->status = 'selesai';
+                        $record->save();
+
+                        self::kirimNotifikasiWA(
+                            $record,
+                            "Yth. {$record->nama},\n\n" .
+                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} telah selesai diproses.\n" .
+                                "Anda dapat mengambilnya di kantor kami selama jam kerja.\n\n" .
+                                "Terima kasih."
+                        );
+
+                        Notification::make()
+                            ->title('Surat selesai diproses')
+                            ->body('Status diubah menjadi "Selesai" dan notifikasi WA dikirim')
+                            ->success()
+                            ->send();
+                    })
+                    ->visible(fn($record) => $record->status === 'diproses'),
+
+                // Aksi untuk mengirim notifikasi WA saat surat diantar
+                Tables\Actions\Action::make('kirimNotifikasiDiantar')
+                    ->label('Antar')
+                    ->icon('heroicon-o-truck')
+                    ->color('info')
+                    ->requiresConfirmation()
+                    ->modalHeading('Konfirmasi Pengantaran Surat')
+                    ->modalDescription('Apakah surat ini akan diantar dan ingin mengirim notifikasi WA?')
+                    ->modalSubmitActionLabel('Ya, Antar')
+                    ->action(function (RequestSurat $record) {
+                        $record->status = 'diantar';
+                        $record->save();
+
+                        self::kirimNotifikasiWA(
+                            $record,
+                            "Yth. {$record->nama},\n\n" .
+                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} sedang dalam proses pengantaran.\n" .
+                                "Harap bersiap untuk menerimanya.\n\n" .
+                                "Terima kasih."
+                        );
+
+                        Notification::make()
+                            ->title('Surat sedang diantar')
+                            ->body('Status diubah menjadi "Diantar" dan notifikasi WA dikirim')
+                            ->success()
+                            ->send();
+                    })
+                    ->visible(fn($record) => $record->status === 'selesai'),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
+    }
+
+    // Fungsi untuk mengirim notifikasi WA dengan pesan dinamis
+    protected static function kirimNotifikasiWA(RequestSurat $requestSurat, string $pesan)
+    {
+        $nomorTelepon = $requestSurat->nomor_telepon;
+
+        // Format nomor telepon
+        $nomorTelepon = preg_replace('/^\+/', '', $nomorTelepon);
+        $nomorTelepon = preg_replace('/^0/', '62', $nomorTelepon);
+
+        // Encode pesan untuk URL
+        $pesanEncoded = urlencode($pesan);
+
+        // Buat link WA
+        $waLink = "https://wa.me/{$nomorTelepon}?text={$pesanEncoded}";
+
+        // Buka link WA di tab baru
+        return redirect()->away($waLink);
     }
 
     public static function getRelations(): array
