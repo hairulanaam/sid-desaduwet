@@ -135,7 +135,7 @@ class RequestSuratResource extends Resource
                         self::kirimNotifikasiWA(
                             $record,
                             "Yth. {$record->nama},\n\n" .
-                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} sedang dalam proses.\n" .
+                                "{$record->jenis_surat} sedang dalam proses.\n" .
                                 "Kami akan menginformasikan kembali ketika surat sudah selesai.\n\n" .
                                 "Terima kasih atas kesabaran Anda."
                         );
@@ -164,7 +164,7 @@ class RequestSuratResource extends Resource
                         self::kirimNotifikasiWA(
                             $record,
                             "Yth. {$record->nama},\n\n" .
-                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} telah selesai diproses.\n" .
+                                "{$record->jenis_surat} telah selesai diproses.\n" .
                                 "Anda dapat mengambilnya di kantor kami selama jam kerja.\n\n" .
                                 "Terima kasih."
                         );
@@ -193,7 +193,7 @@ class RequestSuratResource extends Resource
                         self::kirimNotifikasiWA(
                             $record,
                             "Yth. {$record->nama},\n\n" .
-                                "Surat {$record->jenis_surat} dengan nomor {$record->no_surat} sedang dalam proses pengantaran.\n" .
+                                "{$record->jenis_surat} sedang dalam proses pengantaran.\n" .
                                 "Harap bersiap untuk menerimanya.\n\n" .
                                 "Terima kasih."
                         );
